@@ -4,7 +4,7 @@
    <modelVersion>4.0.0</modelVersion>
 
    <groupId>org.gmnz.sb</groupId>
-   <artifactId>jh5-01.01</artifactId>
+   <artifactId>jh5-0101</artifactId>
    <version>1.0-SNAPSHOT</version>
 
    <packaging>war</packaging>
@@ -14,29 +14,10 @@
       <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
    </properties>
 
-   <name>jh5-01.01 Maven Webapp</name>
+   <name>jh5-0101 Maven Webapp</name>
    <url>http://maven.apache.org</url>
 
    <dependencies>
-      <!--
-      <dependency>
-         <groupId>javax.servlet</groupId>
-         <artifactId>javax.servlet-api</artifactId>
-         <version>3.1.0</version>
-         <scope>provided</scope>
-      </dependency>
-
-      <dependency>
-         <groupId>com.sun.faces</groupId>
-         <artifactId>jsf-api</artifactId>
-         <version>2.2.12</version>
-      </dependency>
-      <dependency>
-         <groupId>com.sun.faces</groupId>
-         <artifactId>jsf-impl</artifactId>
-         <version>2.2.12</version>
-      </dependency>
--->
       <dependency>
          <groupId>javax</groupId>
          <artifactId>javaee-web-api</artifactId>
@@ -53,13 +34,12 @@
          <artifactId>jsf-impl</artifactId>
          <version>2.2.12</version>
       </dependency>
-
    </dependencies>
 
 
    <build>
 
-      <finalName>jh5-01.01</finalName>
+      <finalName>jh5-0101</finalName>
 
       <plugins>
          <plugin>
