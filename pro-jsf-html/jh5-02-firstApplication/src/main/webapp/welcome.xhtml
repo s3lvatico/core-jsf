@@ -1,0 +1,36 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" 
+      xmlns:ui="http://java.sun.com/jsf/facelets" 
+      xmlns:h="http://java.sun.com/jsf/html" 
+      xmlns:f="http://java.sun.com/jsf/core">
+
+<ui:composition template="/WEB-INF/templates/simple.xhtml">
+    <ui:define name="title">
+        #{bundle['application.welcomepage.title']}
+    </ui:define>    
+    <ui:define name="content">
+        #{bundle['application.welcome']}, #{user.name}! <br/><br/>
+        
+        <b>Profession: </b>
+        Title: #{user.profession.title}, Industry: #{user.profession.industry}
+        
+        <br/><br/>
+                
+        <b>You have the following initial languages: </b>
+        #{user.spokenLanguages}.<br/><br/>
+        
+        <b>You have the following initial list of favorite sport:</b>
+        <ul>
+            <ui:repeat value="#{user.favoriteSport}" var="sport">
+                <li>#{sport}</li>
+            </ui:repeat>
+        </ul>
+        
+        <h:link value="#{bundle['application.welcomepage.return']}" 
+                outcome="index"></h:link> <br/><br/>
+    </ui:define>
+</ui:composition>
+    
+</html>
+
