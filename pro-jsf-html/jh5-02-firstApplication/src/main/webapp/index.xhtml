@@ -1,38 +1,48 @@
 <?xml version='1.0' encoding='UTF-8' ?>
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml" 
-      xmlns:ui="http://java.sun.com/jsf/facelets" 
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
       xmlns:h="http://java.sun.com/jsf/html">
 
-<ui:composition template="/WEB-INF/templates/simple.xhtml">      
+<!--
+    Questo fa capire che viene usato un template.
+    Vai a vedere il template referenziato per avere un'idea della
+    struttura generale della pagina
+-->
+<ui:composition template="/WEB-INF/templates/simple.xhtml">
     <ui:define name="title">
         #{bundle['application.loginpage.title']}
     </ui:define>
     <ui:define name="content">
         <h:form>
-            <h:panelGrid columns="3">
-                <h:outputText value="#{bundle['user.name']}"></h:outputText>
-                <h:inputText id="userName" 
-                             value="#{user.name}" 
-                             required="true"  
+            <h:panelGrid columns="3"> <!-- panelGrid a 3 colonne == andrà alla riga successiva ogni 3 elementi -->
+
+                <h:outputText value="#{bundle['user.name']}"/>
+                <!-- dà il nome al campo del form e alla variabile inviata in POST -->
+                <!-- è obbligatorio riempire il campo, e viene forntio anche un riferimento per il messaggio d'errore -->
+                <h:inputText id="userName" value="#{user.name}"
+                             required="true"
                              requiredMessage="#{bundle['user.name.validation']}">
+                    <!-- il testo inserito qui, dopo la validazione, sarà assegnato al bean di nome "user", alla proprietà "name" -->
                 </h:inputText>
+                <!-- qui viene ospitato l'eventuale messaggio d'errore -->
                 <h:message for="userName" styleClass="errorMessage"/>
 
-                <h:outputText value="#{bundle['user.password']}"></h:outputText>
-                <h:inputSecret id="password" 
-                               value="#{user.password}" 
-                               required="true" 
+                <!-- nuova riga -->
+                <h:outputText value="#{bundle['user.password']}"/>
+                <h:inputSecret id="password"
+                               value="#{user.password}"
+                               required="true"
                                requiredMessage="#{bundle['user.password.validation']}">
                 </h:inputSecret>
                 <h:message for="password" styleClass="errorMessage"/>
             </h:panelGrid>
-            
-            <h:commandButton value="#{bundle['application.login']}" action="#{user.login}"/> 
-            <br/><br/>      
+
+            <h:commandButton value="#{bundle['application.login']}" action="#{user.login}"/>
+            <br/><br/>
         </h:form>
     </ui:define>
 </ui:composition>
-    
+
 </html>
 
