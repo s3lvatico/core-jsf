@@ -10,6 +10,7 @@ public class User implements Serializable {
     
     private String name;
     private String password;
+    // questa è una dipendenza da un altro bean
     private Profession profession;
     
     private List<String> favoriteSports;
@@ -55,7 +56,9 @@ public class User implements Serializable {
         this.profession = profession;
     }
     
-    public String login() {       
+    public String login() {
+        // a meno di regole di navigazione esplicitamente definite
+        // devi cercare l'eventuale pagina "welcome"
         return "welcome";
     }
     

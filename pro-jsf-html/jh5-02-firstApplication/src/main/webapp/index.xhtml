@@ -5,8 +5,7 @@
       xmlns:h="http://java.sun.com/jsf/html">
 
 <!--
-    Questo fa capire che viene usato un template.
-    Vai a vedere il template referenziato per avere un'idea della
+    Questo fa capire che viene usato un template. Vai a vedere il template referenziato per avere un'idea della
     struttura generale della pagina
 -->
 <ui:composition template="/WEB-INF/templates/simple.xhtml">
@@ -15,34 +14,51 @@
     </ui:define>
     <ui:define name="content">
         <h:form>
-            <h:panelGrid columns="3"> <!-- panelGrid a 3 colonne == andrà alla riga successiva ogni 3 elementi -->
+<!--
+Attenzione: i commenti vanno mantenuti fuori dal panelGrid. Sembra che l'implementazione JSF non distingua, durante
+il parsing, gli elementi da rappresentare rispetto ai commenti. Se vengono inseriti dei tag di commento all'interno
+del panelGrid, questi saranno interpretati ugualmente come elementi da inserire nella tabella html generata dal jsf.
+-->
 
+<!--
+PanelGrid. Rappresenta una tabella html con celle che contengono gli elementi elencati all'interno del tag.
+Il valore dell'attributo "columns" stabilisce ogni quanti elementi iniziare una nuova riga della tabella.
+Detto "c" il valore dell'attributo "columns", verrà iniziata una nuova riga ogni n*c+1 elementi (n=1,2,3,...)
+
+In questo caso, nuova riga al quarto, al settimo, al decimo, ...
+-->
+
+<!--
+inputText id="userName" genera un campo di testo il cui valore sarà trasmesso in POST tramite la variabile
+"userName" (classico form) e che sarà memorizzato nel managed bean di nome "user" nella proprietà "name".
+Gli altri attributi indicano che il campo è obbligatorio e che in caso di mancato inserimento, il messaggio di errore
+sarà recuperato dalla risorsa "bundle".
+ -->
+
+<!--
+message for="userName" styleClass="errorMessage" : qui viene ospitato l'eventuale messaggio d'errore generato
+dall'elemento il cui id è specificato nell'attributo "for". L'attributo styleclass applica una specifica classe
+css all'elemento corrispondente. Il css in questa pagina non appare, perché è referenziato dal template
+-->
+
+            <h:panelGrid columns="3">
                 <h:outputText value="#{bundle['user.name']}"/>
-                <!-- dà il nome al campo del form e alla variabile inviata in POST -->
-                <!-- è obbligatorio riempire il campo, e viene forntio anche un riferimento per il messaggio d'errore -->
                 <h:inputText id="userName" value="#{user.name}"
-                             required="true"
-                             requiredMessage="#{bundle['user.name.validation']}">
-                    <!-- il testo inserito qui, dopo la validazione, sarà assegnato al bean di nome "user", alla proprietà "name" -->
-                </h:inputText>
-                <!-- qui viene ospitato l'eventuale messaggio d'errore -->
+                             required="true" requiredMessage="#{bundle['user.name.validation']}"/>
                 <h:message for="userName" styleClass="errorMessage"/>
-
-                <!-- nuova riga -->
                 <h:outputText value="#{bundle['user.password']}"/>
                 <h:inputSecret id="password"
                                value="#{user.password}"
                                required="true"
-                               requiredMessage="#{bundle['user.password.validation']}">
-                </h:inputSecret>
+                               requiredMessage="#{bundle['user.password.validation']}"/>
                 <h:message for="password" styleClass="errorMessage"/>
             </h:panelGrid>
 
+            <!-- dall'attributo "action" si capisce che il bean "user" ha un metodo "login"  -->
             <h:commandButton value="#{bundle['application.login']}" action="#{user.login}"/>
             <br/><br/>
         </h:form>
     </ui:define>
 </ui:composition>
-
 </html>
 

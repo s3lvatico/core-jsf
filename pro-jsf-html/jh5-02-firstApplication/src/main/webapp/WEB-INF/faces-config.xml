@@ -7,84 +7,87 @@
               xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
               xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-facesconfig_2_1.xsd">
 
-    <factory>
-        <exception-handler-factory>
-            com.jsfprohtml5.firstapplication.exceptions.CustomExceptionHandlerFactory
-        </exception-handler-factory>
-    </factory>
+   <factory>
+      <exception-handler-factory>
+         com.jsfprohtml5.firstapplication.exceptions.CustomExceptionHandlerFactory
+      </exception-handler-factory>
+   </factory>
 
-    <!-- dichiarazione di un bean gestito - controlla nella classe se ci sono annotazioni -->
-    <!-- ricordando che l'xml vince sempre sulle annotazioni -->
-    <managed-bean>
-        <!-- in questo esempio, il managed bean è un semplice pojo, non ha annotazioni -->
-        <managed-bean-name>user</managed-bean-name>
-        <managed-bean-class>com.jsfprohtml5.firstapplication.model.User</managed-bean-class>
-        <managed-bean-scope>session</managed-bean-scope>
+   <!-- dichiarazione di un bean gestito - controlla nella classe se ci sono annotazioni -->
+   <!-- ricordando che l'xml vince sempre sulle annotazioni -->
+   <managed-bean>
+      <!-- in questo esempio, il managed bean è un semplice pojo, non ha annotazioni -->
+      <managed-bean-name>user</managed-bean-name>
+      <managed-bean-class>com.jsfprohtml5.firstapplication.model.User</managed-bean-class>
+      <managed-bean-scope>session</managed-bean-scope>
 
-        <managed-property>
-            <property-name>profession</property-name>
-            <value>#{profession}</value>
-            <!-- la proprietà "profession" è del tipo rappresentato dal bean gestito che
-                 ha nome "profession". Deve essere un altro managed bean definito più
-                 avanti in questo file. -->
-        </managed-property>
-        <managed-property>
-            <property-name>name</property-name>
-            <value>anonymous</value>
-            <!-- la proprietà "name" ha il valore predefinito "anonymous" -->
-        </managed-property>
+      <managed-property>
+         <property-name>profession</property-name>
+         <value>#{profession}</value>
+         <!-- la proprietà "profession" è del tipo rappresentato dal bean gestito che
+              ha nome "profession". Deve essere un altro managed bean definito più
+              avanti in questo file. -->
+      </managed-property>
+      <managed-property>
+         <property-name>name</property-name>
+         <value>anonymous</value>
+         <!-- la proprietà "name" ha il valore predefinito "anonymous" -->
+      </managed-property>
 
-        <managed-property>
-            <property-name>favoriteSports</property-name>
-            <!-- la proprietà "favoriteSports" è una lista, e viene inizializzata con i
-                 valori dichiarati di seguito -->
-            <list-entries>
-                <value>Handball</value>
-                <value>Football</value>
-                <value>Basketball</value>
-            </list-entries>
-        </managed-property>
+      <managed-property>
+         <property-name>favoriteSports</property-name>
+         <!-- la proprietà "favoriteSports" è una lista, e viene inizializzata con i
+              valori dichiarati di seguito -->
+         <list-entries>
+            <value>Handball</value>
+            <value>Football</value>
+            <value>Basketball</value>
+         </list-entries>
+      </managed-property>
 
-        <managed-property>
-            <property-name>spokenLanguages</property-name>
-            <!-- la proprietà "spokenLanguages" è una mappa, che viene inizializzata con le
-                 coppie [chiave, valore] dichiarate di seguito -->
-            <map-entries>
-                <map-entry>
-                    <key>EN</key>
-                    <value>English</value>
-                </map-entry>
-                <map-entry>
-                    <key>FR</key>
-                    <value>French</value>
-                </map-entry>
-            </map-entries>
-        </managed-property>
-    </managed-bean>
+      <managed-property>
+         <property-name>spokenLanguages</property-name>
+         <!-- la proprietà "spokenLanguages" è una mappa, che viene inizializzata con le
+              coppie [chiave, valore] dichiarate di seguito -->
+         <map-entries>
+            <map-entry>
+               <key>EN</key>
+               <value>English</value>
+            </map-entry>
+            <map-entry>
+               <key>FR</key>
+               <value>French</value>
+            </map-entry>
+         </map-entries>
+      </managed-property>
+   </managed-bean>
 
 
-    <managed-bean>
-        <!-- Questo è il managed bean da cui dipende il bean definito sopra -->
-        <managed-bean-name>profession</managed-bean-name>
-        <managed-bean-class>com.jsfprohtml5.firstapplication.model.Profession</managed-bean-class>
-        <!-- questo bean non ha ambito (i.e. lo scope è "none"), significa che eredita
-             l'ambito dal bean dipendente -->
-        <managed-bean-scope>none</managed-bean-scope>
-        <!-- due proprietà dichiarate, di tipo stringa -->
-        <managed-property>
-            <property-name>title</property-name>
-            <value>Software Engineer</value>
-        </managed-property>
-        <managed-property>
-            <property-name>industry</property-name>
-            <value>IT</value>
-        </managed-property>
-    </managed-bean>
+   <managed-bean>
+      <!-- Questo è il managed bean da cui dipende il bean definito sopra -->
+      <managed-bean-name>profession</managed-bean-name>
+      <managed-bean-class>com.jsfprohtml5.firstapplication.model.Profession</managed-bean-class>
+      <!-- questo bean non ha ambito (i.e. lo scope è "none"), significa che eredita
+           l'ambito dal bean dipendente -->
+      <managed-bean-scope>none</managed-bean-scope>
+      <!-- due proprietà dichiarate, di tipo stringa -->
+      <managed-property>
+         <property-name>title</property-name>
+         <value>Software Engineer</value>
+      </managed-property>
+      <managed-property>
+         <property-name>industry</property-name>
+         <value>IT</value>
+      </managed-property>
+   </managed-bean>
 
-    <application>
-        <resource-bundle>
-            <base-name>com.jsfprohtml5.firstapplication.messages</base-name>
-            <var>bundle</var>
-        </resource-bundle>
-    </application>
+   <application>
+      <resource-bundle>
+         <!-- raccolta di messaggi per l'I18N  -->
+         <base-name>com.jsfprohtml5.firstapplication.messages</base-name>
+         <!-- viene referenziato nelle pagine attraverso la variabile "bundle", trattato
+         sostanzialmente come una mappa -->
+         <var>bundle</var>
+      </resource-bundle>
+   </application>
 </faces-config>
