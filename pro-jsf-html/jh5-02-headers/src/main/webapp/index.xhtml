@@ -1,0 +1,31 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:c="http://java.sun.com/jstl/core">
+
+<h:head>
+    <title>Sample page with CDI bean</title>
+</h:head>
+
+<h:body>
+    <h2>Request headers</h2>
+    <table>
+        <thead>
+        <tr>
+            <th>Header name</th>
+            <th>Header value</th>
+        </tr>
+        </thead>
+        <c:forEach items="#{header}" var="h">
+            <tr>
+                <td>#{h.key}</td>
+                <td>#{h.value}</td>
+            </tr>
+        </c:forEach>
+    </table>
+    <hr/>
+    <h5>EOF</h5>
+</h:body>
+
+</html>
