@@ -55,6 +55,7 @@ css all'elemento corrispondente. Il css in questa pagina non appare, perché è 
             </h:panelGrid>
 
             <!-- dall'attributo "action" si capisce che il bean "user" ha un metodo "login"  -->
+            <!-- questo è il classico esempio di "method expression" di un managed bean -->
             <h:commandButton value="#{bundle['application.login']}" action="#{user.login}"/>
             <br/><br/>
         </h:form>

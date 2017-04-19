@@ -1,0 +1,33 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+>
+
+
+<h:head>
+    <title>Beverage selection</title>
+</h:head>
+
+<h:body>
+    <h2>Dimostrazione del ValueChangeListener</h2>
+    <h:form>
+        <h:outputText value="Select something to drink"/>
+        <br></br>
+        <h:selectOneMenu value="#{beverages.name}"
+                         valueChangeListener="#{beverages.beverageSelected}"
+                         onchange="submit()">
+            <f:selectItem itemLabel="---" itemValue="---"/>
+            <f:selectItem itemLabel="Tea" itemValue="t"/>
+            <f:selectItem itemLabel="Coffee" itemValue="c"/>
+            <f:selectItem itemLabel="Coca-Cola" itemValue="o"/>
+        </h:selectOneMenu>
+        <br></br>
+        <h:outputText value="total price: € #{beverages.price}"
+                      rendered="#{beverages.price ne null}"/>
+    </h:form>
+</h:body>
+
+</html>
+
