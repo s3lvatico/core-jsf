@@ -22,7 +22,7 @@ public class Sample implements Serializable {
 
 
 	public String getName() {
-		return "the sample CDI bean";
+		return "the sample bean";
 	}
 
 
@@ -44,4 +44,5 @@ public class Sample implements Serializable {
 	public void preDestroy() {
 		System.out.println("preDestroy()");
 	}
+
 }

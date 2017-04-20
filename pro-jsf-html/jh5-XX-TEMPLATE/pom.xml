@@ -26,6 +26,7 @@
       </dependency>
 
       <!-- CDI == usa queste dipendenze se vuoi usare la CDI -->
+      <!--
       <dependency>
          <groupId>javax.enterprise</groupId>
          <artifactId>cdi-api</artifactId>
@@ -38,6 +39,7 @@
          <artifactId>weld-servlet</artifactId>
          <version>2.4.3.Final</version>
       </dependency>
+      -->
       <!-- ============================================================ CDI -->
 
       <!-- JSF == usa queste dipendenze se vuoi usare le JavaServerFaces -->
@@ -54,13 +56,14 @@
       </dependency>
       <!-- ============================================================ JSF -->
 
-      <!-- JSF JSTL == usa queste se vuoi usare -->
-      <!-- la standard tag library delle JSF -->
+      <!-- JSF JSTL == usa queste se vuoi usare la standard tag library delle JSF -->
+      <!--
       <dependency>
          <groupId>javax.servlet.jsp.jstl</groupId>
          <artifactId>javax.servlet.jsp.jstl-api</artifactId>
          <version>1.2.1</version>
       </dependency>
+      -->
       <!-- ======================================================= JSF JSTL -->
 
    </dependencies>

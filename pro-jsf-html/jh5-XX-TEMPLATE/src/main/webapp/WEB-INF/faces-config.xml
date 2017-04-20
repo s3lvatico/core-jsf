@@ -1,0 +1,69 @@
+<?xml version='1.0' encoding='UTF-8'?>
+
+<!-- =========== FULL CONFIGURATION FILE ================================== -->
+
+<faces-config version="2.1"
+              xmlns="http://java.sun.com/xml/ns/javaee"
+              xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+              xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-facesconfig_2_1.xsd">
+
+   <!-- spazio per aggiungere una factory personalizzata per i gestori di eccezione -->
+   <!--
+   <factory>
+      <exception-handler-factory>
+         com.jsfprohtml5.firstapplication.exceptions.CustomExceptionHandlerFactory
+      </exception-handler-factory>
+   </factory>
+   -->
+
+
+   <!-- spazio per la dichiarazione di bean gestiti            -->
+   <!-- ricordando che l'xml vince sempre sulle annotazioni    -->
+   <!--
+   <managed-bean>
+      <managed-bean-name>nomeBean</managed-bean-name>
+      <managed-bean-class>full.qualified.class.Name</managed-bean-class>
+      <managed-bean-scope>session</managed-bean-scope>
+
+      <managed-property>
+         <property-name>someProperty</property-name>
+         <value>#{valueExpression} oppure valore come stringa</value>
+      </managed-property>
+
+      <managed-property>
+         <property-name>sampleListProperty</property-name>
+         <list-entries>
+            <value>entry1</value>
+            <value>entry2</value>
+         </list-entries>
+      </managed-property>
+
+      <managed-property>
+         <property-name>mapValuedProperty</property-name>
+         <map-entries>
+            <map-entry>
+               <key>k1</key>
+               <value>v1</value>
+            </map-entry>
+            <map-entry>
+               <key>k2</key>
+               <value>v2</value>
+            </map-entry>
+         </map-entries>
+      </managed-property>
+   </managed-bean>
+
+   -->
+
+   <application>
+      <!-- esempio di resource bundle per l'I18N -->
+      <!--
+      <resource-bundle>
+         <base-name>f.q.bundle.name</base-name>
+         <var>nomeVariabile</var>
+      </resource-bundle>
+      -->
+   </application>
+
+
+</faces-config>
