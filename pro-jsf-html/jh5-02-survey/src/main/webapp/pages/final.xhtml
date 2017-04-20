@@ -1,0 +1,20 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" 
+      xmlns:ui="http://java.sun.com/jsf/facelets">
+
+<ui:composition template="/WEB-INF/templates/simple.xhtml">      
+    <ui:define name="title">
+        #{bundle['survey.thanks.page']}
+    </ui:define>
+    <ui:define name="header">
+        <h1>#{bundle['survey.thanks.page']}</h1>
+    </ui:define>
+    <ui:define name="content">
+        <br/>
+        #{bundle['survey.thanks.statement']}
+        <br/><br/>
+    </ui:define>
+</ui:composition>
+    
+</html>
