@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+   <modelVersion>4.0.0</modelVersion>
+
+   <groupId>org.gmnz.sb</groupId>
+   <artifactId>jh5-02-nav-1</artifactId>
+   <version>1.0-SNAPSHOT</version>
+   <packaging>war</packaging>
+
+
+   <properties>
+      <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+      <faces.version>2.2.12</faces.version>
+   </properties>
+
+
+   <dependencies>
+
+      <dependency>
+         <groupId>javax</groupId>
+         <artifactId>javaee-web-api</artifactId>
+         <version>7.0</version>
+         <scope>provided</scope>
+      </dependency>
+
+      <!-- CDI == usa queste dipendenze se vuoi usare la CDI -->
+      <!--
+      <dependency>
+         <groupId>javax.enterprise</groupId>
+         <artifactId>cdi-api</artifactId>
+         <version>1.2</version>
+         <scope>provided</scope>
+      </dependency>
+
+      <dependency>
+         <groupId>org.jboss.weld.servlet</groupId>
+         <artifactId>weld-servlet</artifactId>
+         <version>2.4.3.Final</version>
+      </dependency>
+      -->
+      <!-- ============================================================ CDI -->
+
+      <!-- JSF == usa queste dipendenze se vuoi usare le JavaServerFaces -->
+      <dependency>
+         <groupId>com.sun.faces</groupId>
+         <artifactId>jsf-api</artifactId>
+         <version>${faces.version}</version>
+      </dependency>
+
+      <dependency>
+         <groupId>com.sun.faces</groupId>
+         <artifactId>jsf-impl</artifactId>
+         <version>${faces.version}</version>
+      </dependency>
+      <!-- ============================================================ JSF -->
+
+      <!-- JSF JSTL == usa queste se vuoi usare la standard tag library delle JSF -->
+      <!--
+      <dependency>
+         <groupId>javax.servlet.jsp.jstl</groupId>
+         <artifactId>javax.servlet.jsp.jstl-api</artifactId>
+         <version>1.2.1</version>
+      </dependency>
+      -->
+      <!-- ======================================================= JSF JSTL -->
+
+   </dependencies>
+
+   <build>
+
+      <finalName>${project.artifactId}</finalName>
+
+      <plugins>
+         <plugin>
+            <artifactId>maven-compiler-plugin</artifactId>
+            <version>3.6.1</version>
+            <configuration>
+               <source>1.8</source>
+               <target>1.8</target>
+            </configuration>
+         </plugin>
+      </plugins>
+
+   </build>
+</project>

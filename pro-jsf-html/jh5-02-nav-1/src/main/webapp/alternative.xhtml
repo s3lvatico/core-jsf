@@ -1,0 +1,25 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:ui="http://java.sun.com/jsf/facelets">
+
+<h:head>
+    <title>Sample page</title>
+</h:head>
+
+<h:body>
+    <ui:composition template="WEB-INF/templates/basic_bs.xhtml">
+
+        <ui:define name="projectName">
+            jh5-02-nav-1
+        </ui:define>
+
+        <ui:define name="content">
+            <h3>Questa è la navigazione alternativa (con redirect)</h3>
+            <p>L'url nella barra degli indirizzi è cambiato</p>
+            <h:button styleClass="btn btn-success" value="torna indietro" outcome="index"/>
+        </ui:define>
+    </ui:composition>
+</h:body>
+</html>
