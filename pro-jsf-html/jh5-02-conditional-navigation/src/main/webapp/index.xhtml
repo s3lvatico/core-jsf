@@ -1,0 +1,30 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets">
+<h:head>
+    <title>Sample page</title>
+</h:head>
+
+<h:body>
+    <ui:composition template="WEB-INF/templates/basic_bs.xhtml">
+
+        <ui:define name="projectName">
+            jh5-02-conditional-navigation
+        </ui:define>
+
+        <ui:define name="content">
+            <p>Esempio: specifica quante ore dormi mediamente al giorno</p>
+            <h:form>
+                <h:outputText value="Ore dormite: "/>
+                <h:inputText id="sleepingHours" value="#{sleeping.hours}" required="true" styleClass="form-control">
+                    <f:convertNumber integerOnly="true" maxIntegerDigits="2"/>
+                </h:inputText>
+                <h:commandButton action="proceed" value="check my sleep" styleClass="btn btn-primary"/>
+            </h:form>
+        </ui:define>
+    </ui:composition>
+</h:body>
+</html>
