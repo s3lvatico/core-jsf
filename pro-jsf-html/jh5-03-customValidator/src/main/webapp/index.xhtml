@@ -1,0 +1,45 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:ui="http://java.sun.com/jsf/facelets" xmlns:f="http://java.sun.com/jsf/core">
+
+<h:head>
+    <title>Sample page</title>
+</h:head>
+
+<h:body>
+    <ui:composition template="WEB-INF/templates/basic_bs.xhtml">
+
+        <ui:define name="projectName">
+            jh5-03-customValidator
+        </ui:define>
+
+        <ui:define name="content">
+            <h:form>
+                <h:panelGrid columns="3">
+                    <h:outputText value="Name"/>
+                    <h:inputText id="itxtName" value="#{person.name}" required="true">
+                        <f:validateBean validationGroups="org.gmnz.sb.validation.LengthGroup"/>
+                    </h:inputText>
+                    <h:message for="itxtName"/>
+                    <h:outputText value="Address"/>
+                    <h:inputText id="itxtAddress" value="#{person.address}" required="true">
+                        <f:validateBean validationGroups="org.gmnz.sb.validation.LengthGroup"/>
+                    </h:inputText>
+                    <h:message for="itxtAddress"/>
+                    <h:outputText value="Email"/>
+                    <h:inputText id="itxtEmail" value="#{person.email}" required="true">
+                        <f:validateBean
+                                validationGroups="org.gmnz.sb.validation.LengthGroup,org.gmnz.sb.validation.EmailGroup"/>
+                    </h:inputText>
+                    <h:message for="itxtEmail"/>
+                </h:panelGrid>
+                <h:commandButton value="Subscribe" action="#{person.subscribe}"/>
+                <h:messages />
+
+            </h:form>
+        </ui:define>
+    </ui:composition>
+</h:body>
+</html>
