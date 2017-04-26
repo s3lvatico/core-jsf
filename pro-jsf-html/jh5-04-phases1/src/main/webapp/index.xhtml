@@ -23,13 +23,21 @@
             <div class="container-fluid">
                 <div class="row">
                     <div class="col-md-4">
-                        <p>cella 1</p>
+                        <h:form>
+                            <h:panelGrid columns="2">
+                                <h:outputText value="1st num"/>
+                                <h:inputText value="#{calc.num1}" required="true"/>
+                                <h:outputText value="2nd num"/>
+                                <h:inputText value="#{calc.num2}" required="true"/>
+                            </h:panelGrid>
+                            <h:commandButton value="Multiply" actionListener="#{calc.multiplicate}"/>
+                            <h:commandButton value="Reset" actionListener="#{calc.reset}"/>
+                            <br/>
+                            <h:messages/>
+                        </h:form>
                     </div>
-                    <div class="col-md-4">
-                        <p>cella 2</p>
-                    </div>
-                    <div class="col-md-4">
-                        <p>cella 3</p>
+                    <div class="col-md-8">
+                        <h:outputText value="Result : #{calc.product}" rendered="#{calc.product ne null}"/>
                     </div>
                 </div>
             </div>
