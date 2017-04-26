@@ -4,12 +4,13 @@ package org.gmnz.sb;
 import javax.annotation.PostConstruct;
 import javax.annotation.PreDestroy;
 import javax.faces.bean.ManagedBean;
+import javax.faces.bean.RequestScoped;
 import javax.faces.bean.SessionScoped;
 import java.io.Serializable;
 
 
 @ManagedBean
-@SessionScoped
+@RequestScoped
 public class Calc implements Serializable {
 
 
