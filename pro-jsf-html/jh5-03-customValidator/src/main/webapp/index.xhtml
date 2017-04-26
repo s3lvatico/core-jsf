@@ -2,7 +2,8 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://java.sun.com/jsf/html"
-      xmlns:ui="http://java.sun.com/jsf/facelets" xmlns:f="http://java.sun.com/jsf/core">
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets">
 
 <h:head>
     <title>Sample page</title>
@@ -23,21 +24,9 @@
                         <f:validateBean validationGroups="org.gmnz.sb.validation.LengthGroup"/>
                     </h:inputText>
                     <h:message for="itxtName"/>
-                    <h:outputText value="Address"/>
-                    <h:inputText id="itxtAddress" value="#{person.address}" required="true">
-                        <f:validateBean validationGroups="org.gmnz.sb.validation.LengthGroup"/>
-                    </h:inputText>
-                    <h:message for="itxtAddress"/>
-                    <h:outputText value="Email"/>
-                    <h:inputText id="itxtEmail" value="#{person.email}" required="true">
-                        <f:validateBean
-                                validationGroups="org.gmnz.sb.validation.LengthGroup,org.gmnz.sb.validation.EmailGroup"/>
-                    </h:inputText>
-                    <h:message for="itxtEmail"/>
                 </h:panelGrid>
-                <h:commandButton value="Subscribe" action="#{person.subscribe}"/>
-                <h:messages />
-
+                <h:commandButton value="Subscribe" action="buh"/>
+                <h:messages/>
             </h:form>
         </ui:define>
     </ui:composition>

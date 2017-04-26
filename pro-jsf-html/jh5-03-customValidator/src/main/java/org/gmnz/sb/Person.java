@@ -8,22 +8,22 @@ import org.gmnz.sb.validation.LengthGroup;
 import javax.annotation.PostConstruct;
 import javax.annotation.PreDestroy;
 import javax.faces.bean.ManagedBean;
-import javax.faces.bean.SessionScoped;
+import javax.faces.bean.RequestScoped;
 import javax.validation.constraints.Size;
 import java.io.Serializable;
 
 
 @ManagedBean
-@SessionScoped
+@RequestScoped
 public class Person implements Serializable {
 
 
 	private static final long serialVersionUID = -3264658081105236204L;
 
-	@Size(min = 3, max = 30, groups = LengthGroup.class) // manca l'informazione su groups
+	@Size(min = 3, max = 30, groups = LengthGroup.class)
 	private String name;
 
-	@Size(min = 10, max = 100, groups = LengthGroup.class) // manca l'informazione su groups
+	@Size(min = 10, max = 100, groups = LengthGroup.class)
 	private String address;
 
 	@Size(min = 5, max = 50, groups = LengthGroup.class)

@@ -1,0 +1,35 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets">
+
+<h:head>
+    <title>Sample page</title>
+</h:head>
+
+<h:body>
+    <ui:composition template="WEB-INF/templates/basic_bs.xhtml">
+
+        <ui:define name="pageTitle">
+            jh5-04-phases1
+        </ui:define>
+
+        <ui:define name="projectName">
+            jh5-04-phases1
+        </ui:define>
+
+        <ui:define name="content">
+            <div class="container-fluid">
+                <div class="row">
+                  <div class="col-md-4">
+
+                  </div>
+                </div>
+            </div>
+            <h:outputText value="This is the sample outputText"/>
+        </ui:define>
+    </ui:composition>
+</h:body>
+</html>

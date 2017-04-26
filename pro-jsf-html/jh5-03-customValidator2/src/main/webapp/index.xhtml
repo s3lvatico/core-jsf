@@ -1,0 +1,61 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" 
+      xmlns:ui="http://java.sun.com/jsf/facelets" 
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core">
+
+<ui:composition template="/WEB-INF/templates/default.xhtml">      
+    <ui:define name="title">
+        #{bundle['application.subscriber.title']}
+    </ui:define>
+    <ui:define name="content">
+        <h:form>
+            <h:panelGrid columns="3">
+                <h:outputText value="#{bundle['user.name']}"></h:outputText>
+                <h:inputText id="userName" 
+                             value="#{person.name}" 
+                             required="true" 
+                             requiredMessage="#{bundle['user.name.required']}">
+                    
+                    <f:validateBean validationGroups="com.jsfprohtml5.subscriber.bean.validation.groups.LengthGroup"/>
+                </h:inputText>
+                <h:message for="userName" styleClass="errorMessage"/>
+
+                <h:outputText value="#{bundle['user.address']}"></h:outputText>
+                <h:inputText id="address" 
+                             value="#{person.address}"
+                             required="true"
+                             requiredMessage="#{bundle['user.address.required']}">
+                    
+                    <f:validateBean validationGroups="com.jsfprohtml5.subscriber.bean.validation.groups.LengthGroup"/>
+                </h:inputText>
+                <h:message for="address" styleClass="errorMessage"/>
+                
+                <h:outputText value="#{bundle['user.email']}"></h:outputText>
+                <h:inputText id="email" 
+                             value="#{person.email}"
+                             required="true"
+                             requiredMessage="#{bundle['user.email.required']}">
+                    
+                    <f:validateBean 
+                        validationGroups="com.jsfprohtml5.subscriber.bean.validation.groups.LengthGroup, 
+                                          com.jsfprohtml5.subscriber.bean.validation.groups.EmailGroup"/>
+                    
+                </h:inputText>
+                <h:message for="email" styleClass="errorMessage"/>              
+            </h:panelGrid>
+            
+            <h:commandButton value="#{bundle['application.subscribe']}" 
+                             action="#{person.subscribe}">
+            </h:commandButton> 
+            
+            <br/>
+            
+            <h:messages styleClass="errorMessage"/>   
+        </h:form>
+    </ui:define>
+</ui:composition>
+    
+</html>
+
