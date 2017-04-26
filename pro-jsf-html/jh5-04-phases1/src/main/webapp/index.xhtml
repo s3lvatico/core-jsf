@@ -2,7 +2,7 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://java.sun.com/jsf/html"
-      xmlns:ui="http://java.sun.com/jsf/facelets">
+      xmlns:ui="http://java.sun.com/jsf/facelets" xmlns:f="http://java.sun.com/jsf/core">
 
 <h:head>
     <title>Sample page</title>
@@ -26,11 +26,17 @@
                         <h:form>
                             <h:panelGrid columns="2">
                                 <h:outputText value="1st num"/>
-                                <h:inputText value="#{calc.num1}" required="true"/>
+                                <h:inputText value="#{calc.num1}" required="true">
+                                    <f:validateLongRange minimum="-100" maximum="100"/>
+                                </h:inputText>
                                 <h:outputText value="2nd num"/>
-                                <h:inputText value="#{calc.num2}" required="true"/>
+                                <h:inputText value="#{calc.num2}" required="true">
+                                    <f:validateLongRange minimum="-100" maximum="100"/>
+                                </h:inputText>
                             </h:panelGrid>
-                            <h:commandButton value="Multiply" actionListener="#{calc.multiplicate}"/>
+                            <h:commandButton value="Multiply" id="cbtnMultiply">
+                                <f:actionListener type="org.gmnz.sb.CbtnMultiplyActionListener"/>
+                            </h:commandButton>
                             <h:commandButton value="Reset" actionListener="#{calc.reset}"/>
                             <br/>
                             <h:messages/>
