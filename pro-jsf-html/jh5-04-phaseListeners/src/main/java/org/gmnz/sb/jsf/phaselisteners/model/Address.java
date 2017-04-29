@@ -2,7 +2,7 @@ package org.gmnz.sb.jsf.phaselisteners.model;
 
 import java.io.Serializable;
 
-public class Address implements Serializable{
+public class Address implements Serializable {
 
     private static final long serialVersionUID = -5142680401898961936L;
 
@@ -10,7 +10,7 @@ public class Address implements Serializable{
     private String town;        // San Mariano
     private String postalCode;  // 06073
     private String city;        // Corciano
-    private String province;    // PG
+
 
     public String getStreet() {
         return street;
@@ -44,14 +44,6 @@ public class Address implements Serializable{
         this.city = city;
     }
 
-    public String getProvince() {
-        return province;
-    }
-
-    public void setProvince(String province) {
-        this.province = province;
-    }
-
     @Override
     public String toString() {
         return "Address{" +
@@ -59,7 +51,6 @@ public class Address implements Serializable{
                 ", town='" + town + '\'' +
                 ", postalCode='" + postalCode + '\'' +
                 ", city='" + city + '\'' +
-                ", province='" + province + '\'' +
                 '}';
     }
 }

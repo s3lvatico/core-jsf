@@ -1,0 +1,11 @@
+Scopo: raccogliere alcune informazioni sulle persone che si registrano
+
+Informazioni rilevate:
+
+- nome completo
+- indirizzo
+- professione
+- indirizzo email
+
+L'utente inserisce le proprie informazioni. Alla conferma, con informazioni corrette, gli sarà presentato un riepilogo
+di quanto inserito.

@@ -21,15 +21,17 @@
             <h:form>
                 <h:panelGrid columns="3">
                     <h:outputText value="Name"/>
-                    <h:inputText id="itxtName" value="[[NAME]]" required="true">
+                    <h:inputText id="itxtName" value="N" required="true">
                         <f:validateLength minimum="2" maximum="20"/>
                     </h:inputText>
                     <h:message for="itxtName"/>
+
                     <h:outputText value="Address"/>
-                    <h:inputText id="itxtAddress" value="[[ADDRESS]]" required="true">
-                        <f:validateLength minimum="10" />
+                    <h:inputText id="itxtAddress" value="#{roster.address}">
+                        <f:converter converterId="roster.addressConverter" />
                     </h:inputText>
                     <h:message for="itxtAddress"/>
+
                     <h:outputText value="Profession"/>
                     <h:selectOneMenu>
                         <f:selectItem itemLabel="L1" itemValue="V1"/>

@@ -1,0 +1,93 @@
+Modello dati
+
+Informazioni sulla persona
+
+nome completo : stringa
+indirizzo : composto da
+    riga principale
+    località
+    CAP
+    città
+
+vincolo: si ipotizza un indirizzo italiano
+
+professione : composto da
+    ruolo : stringa
+    settore : stringa
+
+indirizzo email : stringa corrispondente ad un indirizzo email valido
+
+------------------------------------
+(C) Person
+    name : string
+    address : Address (C)
+    profession : Profession (C)
+    email : String
+
+(C) Address
+    mainLocation : String
+    town : String
+    postalCode : String
+    city : String
+
+(C) Profession
+    role : String
+    industry : String
+
+-------------------------------------
+
+Che cosa voglio fare:
+
+pagina : form di inserimento dati
+|
+|
+pagina : visualizzazione dati inseriti
+
+
+quando dal form di inserimento dati vengono inviati i dati devono essere eseguite le conversioni
+e le validazioni necessarie, dopodiché si crea il semplice grafo di oggetti business lato server
+e poi si viene rediretti verso la pagina di visualizzazione che mostra i dati inseriti.
+La visualizzazione dovrebbe mostrare direttamente l'oggetto business.
+
+
+------
+
+Codifica
+
+nome completo
+    semplice stringa
+        sottoposto a validazione per lunghezza minima
+indirizzo
+    riga1       |
+    località    | (opzionale)
+    CAP         |
+    città
+        sottoposto a conversione (che può far fallire la validazione)
+professione
+    elenco preconfigurato di coppie (settore, ruolo)
+        valori predefiniti e tabellati
+indirizzo email
+    stringa
+        sottoposto a validazione
+
+--------------
+
+immissione dati
+invio del form
+non ci saranno elementi di input con l'attributo immediate=true, quindi
+    P(ARV) --> conversione da stringa a "oggetto business"
+    P(VAL) --> validazione
+
+DA SCRIVERE : convertitore custom per l'indirizzo
+DA SCRIVERE : validatore per l'indirizzo email
+DA SCRIVERE : phase listener che precarica le possibili professioni
+
+tutti questi valori, una volta convertiti e validati, verranno iniettati nel bean di controllo
+ del form, e nel metodo di "action" del pulsante "submit" saranno trasferiti al grafo di oggetti che
+ vogliamo rappresentare nella seconda pagina
+
+
+
+
+
+
