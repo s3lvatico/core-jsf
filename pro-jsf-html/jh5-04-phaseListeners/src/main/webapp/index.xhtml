@@ -39,11 +39,11 @@
                     <h:outputText value=""/>
                     <h:outputText value="Email"/>
                     <h:inputText id="itxtEmail" value="[[EMAIL]]" required="true">
-                        <f:validateLength minimum="10"/>
+                        <f:validator validatorId="roster.emailValidator"/>
                     </h:inputText>
                     <h:message for="itxtEmail"/>
                 </h:panelGrid>
-                <h:commandButton value="pigia" />
+                <h:commandButton value="Register" action="#{roster.register}"  />
             </h:form>
         </ui:define>
     </ui:composition>

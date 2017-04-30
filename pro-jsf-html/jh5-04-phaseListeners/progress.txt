@@ -1,0 +1,17 @@
+Convertitore custom per l'indirizzo
+
+- Scritto
+- testato localmente con un main()
+- registrato nel faces-config.xml
+
+
+
+Validatore per indirizzo email
+
+nuova classe pubblica
+implementa "Validator"
+scrivi metodi
+annota con @FacesValidator("id")
+registralo nel faces-config.xml
+usalo dove serve
+

@@ -12,6 +12,11 @@
         <converter-class>org.gmnz.sb.jsf.phaselisteners.converter.AddressConverter</converter-class>
     </converter>
 
+    <validator>
+        <validator-id>roster.emailValidator</validator-id>
+        <validator-class>org.gmnz.sb.jsf.phaselisteners.validator.EmailValidator</validator-class>
+    </validator>
+
     <!--
     <navigation-rule>
        <from-view-id>/index.xhtml</from-view-id>

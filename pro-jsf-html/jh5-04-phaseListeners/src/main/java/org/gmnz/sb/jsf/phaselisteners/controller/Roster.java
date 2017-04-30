@@ -2,6 +2,7 @@ package org.gmnz.sb.jsf.phaselisteners.controller;
 
 import org.gmnz.sb.jsf.phaselisteners.model.Address;
 
+import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.RequestScoped;
 import java.io.Serializable;
@@ -21,4 +22,15 @@ public class Roster implements Serializable {
     }
 
     private Address address;
+
+    public String register() {
+        System.out.println("register() method invoked");
+        System.out.println(getAddress());
+        return null;
+    }
+
+    @PostConstruct
+    public void postConstruct() {
+        System.out.println("postConstruct() invoked for " + getClass().getName());
+    }
 }
