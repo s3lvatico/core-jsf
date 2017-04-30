@@ -15,3 +15,11 @@ annota con @FacesValidator("id")
 registralo nel faces-config.xml
 usalo dove serve
 
+fatto
+
+-------
+
+:: SystemEventListener per precaricare la combobox delle professioni
+
+public class MyListener implements SystemEventListener
+

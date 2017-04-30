@@ -78,13 +78,14 @@ non ci saranno elementi di input con l'attributo immediate=true, quindi
     P(ARV) --> conversione da stringa a "oggetto business"
     P(VAL) --> validazione
 
-DA SCRIVERE : convertitore custom per l'indirizzo
-DA SCRIVERE : validatore per l'indirizzo email
-DA SCRIVERE : phase listener che precarica le possibili professioni
+[FATTO] DA SCRIVERE : convertitore custom per l'indirizzo
+[FATTO] DA SCRIVERE : validatore per l'indirizzo email
+DA SCRIVERE : system event listener che precarica le possibili professioni
 
 tutti questi valori, una volta convertiti e validati, verranno iniettati nel bean di controllo
  del form, e nel metodo di "action" del pulsante "submit" saranno trasferiti al grafo di oggetti che
  vogliamo rappresentare nella seconda pagina
+
 
 
 

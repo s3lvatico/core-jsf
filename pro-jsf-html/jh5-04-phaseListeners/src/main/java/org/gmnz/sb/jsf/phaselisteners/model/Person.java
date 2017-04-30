@@ -2,13 +2,13 @@ package org.gmnz.sb.jsf.phaselisteners.model;
 
 import java.io.Serializable;
 
-public class Person implements Serializable{
+public class Person implements Serializable {
 
     private static final long serialVersionUID = -3490372689973209412L;
 
     private String name;
     private Address address;
-    private String profession;
+    private Profession profession;
     private String email;
 
     public String getName() {
@@ -27,11 +27,11 @@ public class Person implements Serializable{
         this.address = address;
     }
 
-    public String getProfession() {
+    public Profession getProfession() {
         return profession;
     }
 
-    public void setProfession(String profession) {
+    public void setProfession(Profession profession) {
         this.profession = profession;
     }
 
