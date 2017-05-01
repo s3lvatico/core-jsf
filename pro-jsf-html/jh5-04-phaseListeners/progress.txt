@@ -23,3 +23,4 @@ fatto
 
 public class MyListener implements SystemEventListener
 
+dichiararlo nel faces-config.xml

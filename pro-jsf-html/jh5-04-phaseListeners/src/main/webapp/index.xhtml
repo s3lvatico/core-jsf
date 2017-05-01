@@ -34,7 +34,8 @@
 
                     <h:outputText value="Profession"/>
                     <h:selectOneMenu>
-                        <f:selectItem itemLabel="L1" itemValue="V1"/>
+                        <f:selectItems value="#{applicationScope.professions}" />
+                        <!-- <f:selectItem itemLabel="L1" itemValue="V1"/> -->
                     </h:selectOneMenu>
                     <h:outputText value=""/>
 

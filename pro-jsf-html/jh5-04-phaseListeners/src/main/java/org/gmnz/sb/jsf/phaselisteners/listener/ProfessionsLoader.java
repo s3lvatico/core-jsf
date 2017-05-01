@@ -1,11 +1,9 @@
-package org.gmnz.sb.jsf.phaselisteners;
+package org.gmnz.sb.jsf.phaselisteners.listener;
 
 import org.gmnz.sb.jsf.phaselisteners.model.Profession;
 
 import javax.faces.context.FacesContext;
-import javax.faces.event.AbortProcessingException;
-import javax.faces.event.SystemEvent;
-import javax.faces.event.SystemEventListener;
+import javax.faces.event.*;
 import javax.faces.model.SelectItem;
 import java.util.ArrayList;
 import java.util.List;
@@ -13,7 +11,7 @@ import java.util.Map;
 
 public class ProfessionsLoader implements SystemEventListener {
 
-    public static final String KEY_PROFESSIONS = "K_PROFESSIONS";
+    public static final String KEY_PROFESSIONS = "professions";
 
     private static final String[][] TABLE_PROFESSIONS = {
             {"Teacher", "Education"}, {"Engineer", "TLC"},
@@ -24,6 +22,13 @@ public class ProfessionsLoader implements SystemEventListener {
     public void processEvent(SystemEvent systemEvent) throws AbortProcessingException {
         Map<String, Object> applicationMap = FacesContext.getCurrentInstance().getExternalContext().getApplicationMap();
 
+        if (systemEvent instanceof PostConstructApplicationEvent) {
+            System.out.println("APPLICATION postConstruct");
+            applicationMap.put(KEY_PROFESSIONS, getStandardProfessions());
+        } else if (systemEvent instanceof PreDestroyApplicationEvent) {
+            System.out.println("APPLICATION preDestroy");
+            applicationMap.remove(KEY_PROFESSIONS);
+        }
     }
 
     @Override
@@ -38,17 +43,6 @@ public class ProfessionsLoader implements SystemEventListener {
             Profession p = new Profession(arr[0], arr[1]);
             items.add(new SelectItem(p, String.format("%s (%s)", p.getRole(), p.getIndustry())));
         }
-//        Profession p = new Profession("Teacher", "Education");
-//        items.add(new SelectItem(p, String.format("%s (%s)", p.getRole(), p.getIndustry())));
-//
-//        p = new Profession("Engineer", "TLC");
-//        items.add(new SelectItem(p, String.format("%s (%s)", p.getRole(), p.getIndustry())));
-//
-//        p = new Profession("Doctor", "Health");
-//        items.add(new SelectItem(p, String.format("%s (%s)", p.getRole(), p.getIndustry())));
-//
-//        p = new Profession("Agent", "Security");
-//        items.add(new SelectItem(p, String.format("%s (%s)", p.getRole(), p.getIndustry())));
         return items;
     }
 }

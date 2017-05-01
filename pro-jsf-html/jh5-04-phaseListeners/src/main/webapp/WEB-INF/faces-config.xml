@@ -17,6 +17,7 @@
         <validator-class>org.gmnz.sb.jsf.phaselisteners.validator.EmailValidator</validator-class>
     </validator>
 
+
     <!--
     <navigation-rule>
        <from-view-id>/index.xhtml</from-view-id>
@@ -73,6 +74,14 @@
     -->
 
     <application>
+        <system-event-listener>
+            <system-event-listener-class>org.gmnz.sb.jsf.phaselisteners.listener.ProfessionsLoader</system-event-listener-class>
+            <system-event-class>javax.faces.event.PostConstructApplicationEvent</system-event-class>
+        </system-event-listener>
+        <system-event-listener>
+            <system-event-listener-class>org.gmnz.sb.jsf.phaselisteners.listener.ProfessionsLoader</system-event-listener-class>
+            <system-event-class>javax.faces.event.PreDestroyApplicationEvent</system-event-class>
+        </system-event-listener>
         <!-- esempio di resource bundle per l'I18N -->
         <!--
         <resource-bundle>
