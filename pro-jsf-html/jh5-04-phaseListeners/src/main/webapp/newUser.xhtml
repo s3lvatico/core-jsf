@@ -3,6 +3,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://java.sun.com/jsf/html"
       xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:c="http://java.sun.com/jsp/jstl/core"
       xmlns:ui="http://java.sun.com/jsf/facelets">
 
 <h:head>
@@ -19,31 +20,31 @@
         <ui:define name="content">
             <h:form>
                 <h:panelGrid columns="3">
-                    <h:outputText value="#{msgs['roster.name']}"/>
-                    <h:inputText id="itxtName" value="#{roster.name}" required="true">
+                    <h:outputText value="Name"/>
+                    <h:inputText id="itxtName" value="N" required="true">
                         <f:validateLength minimum="2" maximum="20"/>
                     </h:inputText>
                     <h:message for="itxtName"/>
 
-                    <h:outputText value="#{msgs['roster.address']}"/>
+                    <h:outputText value="Address"/>
                     <h:inputText id="itxtAddress" value="#{roster.address}">
-                        <f:converter converterId="roster.addressConverter"/>
+                        <f:converter converterId="roster.addressConverter" />
                     </h:inputText>
                     <h:message for="itxtAddress"/>
 
-                    <h:outputText value="#{msgs['roster.profession']}"/>
-                    <h:selectOneMenu value="#{roster.profession}">
-                        <f:selectItems value="#{applicationScope.professions}"/>
+                    <h:outputText value="Profession"/>
+                    <h:selectOneMenu>
+                        <f:selectItems value="#{applicationScope.professions}" />
                     </h:selectOneMenu>
                     <h:outputText value=""/>
 
-                    <h:outputText value="#{msgs['roster.email']}"/>
-                    <h:inputText id="itxtEmail" value="#{roster.email}" required="true">
+                    <h:outputText value="Email"/>
+                    <h:inputText id="itxtEmail" value="[[EMAIL]]" required="true">
                         <f:validator validatorId="roster.emailValidator"/>
                     </h:inputText>
                     <h:message for="itxtEmail"/>
                 </h:panelGrid>
-                <h:commandButton value="#{msgs['roster.btn.register']}" action="#{roster.register}"/>
+                <h:commandButton value="Register" action="#{roster.register}"  />
             </h:form>
         </ui:define>
     </ui:composition>

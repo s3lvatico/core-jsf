@@ -75,20 +75,22 @@
 
     <application>
         <system-event-listener>
-            <system-event-listener-class>org.gmnz.sb.jsf.phaselisteners.listener.ProfessionsLoader</system-event-listener-class>
+            <system-event-listener-class>org.gmnz.sb.jsf.phaselisteners.listener.ProfessionsLoader
+            </system-event-listener-class>
             <system-event-class>javax.faces.event.PostConstructApplicationEvent</system-event-class>
         </system-event-listener>
         <system-event-listener>
-            <system-event-listener-class>org.gmnz.sb.jsf.phaselisteners.listener.ProfessionsLoader</system-event-listener-class>
+            <system-event-listener-class>org.gmnz.sb.jsf.phaselisteners.listener.ProfessionsLoader
+            </system-event-listener-class>
             <system-event-class>javax.faces.event.PreDestroyApplicationEvent</system-event-class>
         </system-event-listener>
-        <!-- esempio di resource bundle per l'I18N -->
-        <!--
+
+
         <resource-bundle>
-           <base-name>f.q.bundle.name</base-name>
-           <var>nomeVariabile</var>
+            <base-name>messages</base-name>
+            <var>msgs</var>
         </resource-bundle>
-        -->
+
     </application>
 
 
