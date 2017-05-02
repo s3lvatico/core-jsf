@@ -4,8 +4,8 @@ package org.gmnz.sb.jsf.phaselisteners.model;
 public class Profession {
 
 
-	private String role;
-	private String industry;
+	private String role = "none";
+	private String industry = "---";
 
 
 

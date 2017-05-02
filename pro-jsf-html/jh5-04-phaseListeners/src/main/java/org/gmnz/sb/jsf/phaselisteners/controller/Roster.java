@@ -20,8 +20,8 @@ public class Roster implements Serializable {
 	private static final long serialVersionUID = 4565522402435506436L;
 
 	private String name;
-	private Address address;
-	private Profession profession;
+	private Address address; // = new Address()
+	private Profession profession; // = new Profession()
 	private String email = "--none set--";
 
 
@@ -90,8 +90,11 @@ public class Roster implements Serializable {
 
 
 	public String register() {
-		System.out.println("register() method invoked");
-		System.out.println(getAddress());
+		System.out.println("register() method invoked - summary of entered data:");
+		System.out.format("name       : <%s>%n", name);
+		System.out.format("address    : <%s>%n", address);
+		System.out.format("profession : <%s>%n", profession);
+		System.out.format("email      : <%s>%n", email);
 		return null;
 	}
 

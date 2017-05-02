@@ -130,4 +130,25 @@ Il bean gestito Roster ha un riferimento a un oggetto Profession, che viene
 valorizzato con i dati provenienti dal form una volta che conversioni e
 validazioni sono terminate con successo. Poiché il bean ha àmbito di richiesta
 esso viene rigenerato anche quando la richiesta precedente fallisce per un
-errore di conversione o validazione
+errore di conversione o validazione... ma il problema non sembra essere qui.
+Il problema sembra verificarsi quando si arriva alla fase di validazione, nel
+momento in cui viene generato l'evento che dovrebbe stabilire il cambio di
+valore dell'oggetto. Nell'evento di "changeValue" vengono passati i riferimenti
+al vecchio valore e a quello nuovo (un classico, qualcosa di simile c'era anche
+su Delphi). Quello nuovo è quello contenuto nella richiesta di postback, ma
+quello vecchio è strano: è un oggetto Profession creato con il costruttore
+predefinito. Questo significa che ANCHE negli oggetti business, in generale
+è sempre bene (se non proprio obbligatorio) specificare uno stato iniziale.
+Ma, prima, vediamo cosa succede nello specificare uno stato predefinito del
+campo Profession imprimendolo dalla business logic (cioè dal bean). Non sembra
+funzionare. Pare che lo stato iniziale sia determinato nella fase RestoreView,
+in cui viene invocato il costruttore predefinito di Profession. Al che sarebbe
+da provare l'impostazione forzata di un valore iniziale dall'interfaccia? Ma
+non ha molto senso. E' molto più semplice (e operativamente corretto) assegnare
+uno stato iniziale agli oggetti di una classe quando questa viene istanziata.
+
+Morale della favola: il framework si occupa di istanziare i bean gestiti e
+tutti i loro campi, ma se i campi sono oggetti non gestiti (non dichiarati con
+@ManagedBean) essi vengono, sì, istanziati, ma internamente non avranno uno
+stato definito. E' dunque responsabilità dello sviluppatore definire sempre
+uno stato iniziale degli oggetti. [o in generale è sempre buona pratica].
