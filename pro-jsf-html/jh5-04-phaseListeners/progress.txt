@@ -5,6 +5,14 @@ Convertitore custom per l'indirizzo
 - registrato nel faces-config.xml
 
 
+Converter per l'oggetto di tipo Profession
+
+0) decidi l'isomorfismo tra la tua classe C e le stringhe
+1) classe public che implementa javax.faces.convert.Converter
+2) nell'implementazione, i metodi possono lanciare la javax.faces.convert.ConverterException
+3) dichiarala nel faces-config.xml con id e classe
+4) referenzialo nella pagina web con il tag <f:converter .../>
+
 
 Validatore per indirizzo email
 

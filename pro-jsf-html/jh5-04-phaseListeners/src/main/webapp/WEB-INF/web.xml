@@ -42,4 +42,9 @@
       <welcome-file>faces/index.xhtml</welcome-file>
    </welcome-file-list>
 
+   <mime-mapping>
+      <extension>css.map</extension>
+      <mime-type>application/json</mime-type>
+   </mime-mapping>
+
 </web-app>

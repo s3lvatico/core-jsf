@@ -44,11 +44,11 @@ pagina : form di inserimento dati
 pagina : visualizzazione dati inseriti
 
 
-quando dal form di inserimento dati vengono inviati i dati devono essere eseguite le conversioni
-e le validazioni necessarie, dopodiché si crea il semplice grafo di oggetti business lato server
-e poi si viene rediretti verso la pagina di visualizzazione che mostra i dati inseriti.
-La visualizzazione dovrebbe mostrare direttamente l'oggetto business.
-
+quando dal form di inserimento dati vengono inviati i dati devono essere
+eseguite le conversioni e le validazioni necessarie, dopodiché si crea il
+semplice grafo di oggetti business lato server e poi si viene rediretti verso
+la pagina di visualizzazione che mostra i dati inseriti. La visualizzazione
+dovrebbe mostrare direttamente l'oggetto business.
 
 ------
 
@@ -80,15 +80,38 @@ non ci saranno elementi di input con l'attributo immediate=true, quindi
 
 [FATTO] DA SCRIVERE : convertitore custom per l'indirizzo
 [FATTO] DA SCRIVERE : validatore per l'indirizzo email
-DA SCRIVERE : system event listener che precarica le possibili professioni
-
-tutti questi valori, una volta convertiti e validati, verranno iniettati nel bean di controllo
- del form, e nel metodo di "action" del pulsante "submit" saranno trasferiti al grafo di oggetti che
- vogliamo rappresentare nella seconda pagina
+[FATTO] DA SCRIVERE : system event listener che precarica le possibili
+                      professioni
 
 
 
+tutti questi valori, una volta convertiti e validati, verranno iniettati nel
+bean di controllo  del form, e nel metodo di "action" del pulsante "submit"
+saranno trasferiti al grafo di oggetti che vogliamo rappresentare nella
+seconda pagina.
 
 
+ATTENZIONE
+Consideriamo il caso di una combobox che viene valorizzata con una lista di
+oggetti SelectItem.
 
+I vari SelectItem vengono renderizzati come elementi <option> con:
+    - contenuto uguale alla proprietà itemLabel del SelectItem
+    - attributo value uguale al toString() dell'oggetto referenziato dalla
+    proprietà itemValue del SelectItem
 
+Questo può creare problemi nel momento in cui la combobox inietta un oggetto
+business nel bean sottostante. Se deve essere iniettata una String non ci
+sono controindicazioni, poiché viene usato direttamente il valore dell'
+attributo "value" dell'elemento option. Se si inietta un oggetto diverso, in
+generale va usato un Converter per rendere la classe che si vuole usare
+isomorfa alle stringhe.
+Non è ancora sufficiente. Una volta eseguita la selezione e inviata la
+richiesta, per questioni di sicurezza il runtime esegue un controllo sul tipo
+di oggetto selezionato, per verificare che appartenga di fatto all'insieme
+degli oggetti inizialmente proposti come disponibili nella combobox. E' quindi
+STRETTAMENTE NECESSARIO che gli oggetti che si vogliono usare come elementi
+della combobox implementino ALMENO I METODI EQUALS E HASHCODE, altrimenti il
+controllo di consistenza fallisce, e si ottiene un messaggio di errore di
+validazione anche quando si è scelto un elemento effettivamente presente nell'
+insieme iniziale.

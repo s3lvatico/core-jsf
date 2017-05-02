@@ -12,6 +12,11 @@
         <converter-class>org.gmnz.sb.jsf.phaselisteners.converter.AddressConverter</converter-class>
     </converter>
 
+    <converter>
+        <converter-id>roster.professionConverter</converter-id>
+        <converter-class>org.gmnz.sb.jsf.phaselisteners.converter.ProfessionConverter</converter-class>
+    </converter>
+
     <validator>
         <validator-id>roster.emailValidator</validator-id>
         <validator-class>org.gmnz.sb.jsf.phaselisteners.validator.EmailValidator</validator-class>
@@ -87,7 +92,7 @@
 
 
         <resource-bundle>
-            <base-name>messages</base-name>
+            <base-name>org.gz.res.messages</base-name>
             <var>msgs</var>
         </resource-bundle>
 

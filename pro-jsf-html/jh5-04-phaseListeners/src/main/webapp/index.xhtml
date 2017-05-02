@@ -31,11 +31,12 @@
                     </h:inputText>
                     <h:message for="itxtAddress"/>
 
-                    <h:outputText value="#{msgs['roster.profession']}"/>
-                    <h:selectOneMenu value="#{roster.profession}">
+                    <h:outputText value="#{msgs['roster.profession']}" />
+                    <h:selectOneMenu id="cmbxProfession" value="#{roster.profession}">
                         <f:selectItems value="#{applicationScope.professions}"/>
+                        <f:converter converterId="roster.professionConverter" />
                     </h:selectOneMenu>
-                    <h:outputText value=""/>
+                    <h:message for="cmbxProfession"/>
 
                     <h:outputText value="#{msgs['roster.email']}"/>
                     <h:inputText id="itxtEmail" value="#{roster.email}" required="true">

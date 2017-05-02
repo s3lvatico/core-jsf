@@ -1,5 +1,6 @@
 package org.gmnz.sb.jsf.phaselisteners.controller;
 
+
 import org.gmnz.sb.jsf.phaselisteners.model.Address;
 import org.gmnz.sb.jsf.phaselisteners.model.Profession;
 
@@ -8,57 +9,93 @@ import javax.faces.bean.ManagedBean;
 import javax.faces.bean.RequestScoped;
 import java.io.Serializable;
 
+
 @ManagedBean
 @RequestScoped
 public class Roster implements Serializable {
 
-    private static final long serialVersionUID = 4565522402435506436L;
+	private static final long serialVersionUID = 4565522402435506436L;
 
-    private String name;
-    private Address address;
-    private Profession profession;
-    private String email = "--none set--";
+	private String name;
+	private Address address;
+	private Profession profession;
+	private String email = "--none set--";
 
-    public Address getAddress() {
-        return address;
-    }
 
-    public void setAddress(Address address) {
-        this.address = address;
-    }
+	private String strProf;
 
-    public String getName() {
-        return name;
-    }
 
-    public void setName(String name) {
-        this.name = name;
-    }
 
-    public Profession getProfession() {
-        return profession;
-    }
+	public Address getAddress() {
+		return address;
+	}
 
-    public void setProfession(Profession profession) {
-        this.profession = profession;
-    }
 
-    public String getEmail() {
-        return email;
-    }
 
-    public void setEmail(String email) {
-        this.email = email;
-    }
+	public void setAddress(Address address) {
+		this.address = address;
+	}
 
-    public String register() {
-        System.out.println("register() method invoked");
-        System.out.println(getAddress());
-        return null;
-    }
 
-    @PostConstruct
-    public void postConstruct() {
-        System.out.println("postConstruct() invoked for " + getClass().getName());
-    }
+
+	public String getName() {
+		return name;
+	}
+
+
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
+
+
+	public Profession getProfession() {
+		return profession;
+	}
+
+
+
+	public void setProfession(Profession profession) {
+		this.profession = profession;
+	}
+
+
+
+	public String getStrProf() {
+		return strProf;
+	}
+
+
+
+	public void setStrProf(String strProf) {
+		this.strProf = strProf;
+	}
+
+
+
+	public String getEmail() {
+		return email;
+	}
+
+
+
+	public void setEmail(String email) {
+		this.email = email;
+	}
+
+
+
+	public String register() {
+		System.out.println("register() method invoked");
+		System.out.println(getAddress());
+		return null;
+	}
+
+
+
+	@PostConstruct
+	public void postConstruct() {
+		System.out.println("postConstruct() invoked for " + getClass().getName());
+	}
 }
