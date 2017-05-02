@@ -115,3 +115,19 @@ della combobox implementino ALMENO I METODI EQUALS E HASHCODE, altrimenti il
 controllo di consistenza fallisce, e si ottiene un messaggio di errore di
 validazione anche quando si è scelto un elemento effettivamente presente nell'
 insieme iniziale.
+
+
+ATTENZIONE
+Ho provato ad usare un SystemEventListener per modificare lo stile di un
+componente a seguito della sua validazione. In particolare, un componente con
+quel listener subisce una modifica al suo foglio di stile se la validazione
+fallisce. Fallendo la validazione, il form viene riproposto; tuttavia se poi
+vengono inseriti dati corretti, viene generata una NPE non gestita.
+Questo errore non sembra essere direttamente correlato all'uso improprio o
+errato del listener, ma dovrebbe dipendere da un errore di fondo dello stato
+del modello in condizioni iniziali.
+Il bean gestito Roster ha un riferimento a un oggetto Profession, che viene
+valorizzato con i dati provenienti dal form una volta che conversioni e
+validazioni sono terminate con successo. Poiché il bean ha àmbito di richiesta
+esso viene rigenerato anche quando la richiesta precedente fallisce per un
+errore di conversione o validazione

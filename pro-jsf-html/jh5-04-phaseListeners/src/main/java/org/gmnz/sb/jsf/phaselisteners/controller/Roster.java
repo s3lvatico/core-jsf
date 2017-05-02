@@ -7,6 +7,9 @@ import org.gmnz.sb.jsf.phaselisteners.model.Profession;
 import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.RequestScoped;
+import javax.faces.component.EditableValueHolder;
+import javax.faces.component.UIComponent;
+import javax.faces.event.ComponentSystemEvent;
 import java.io.Serializable;
 
 
@@ -97,5 +100,7 @@ public class Roster implements Serializable {
 	@PostConstruct
 	public void postConstruct() {
 		System.out.println("postConstruct() invoked for " + getClass().getName());
+		System.out.printf("Current bean status: name <%s> | address <%s> | Profession <%s> | email <%s>%n", name,
+				  address, profession, email);
 	}
 }

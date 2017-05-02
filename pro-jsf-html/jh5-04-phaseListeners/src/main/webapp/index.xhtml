@@ -7,10 +7,15 @@
 
 <h:head>
     <title>Sample page</title>
+
 </h:head>
 
 <h:body>
     <ui:composition template="WEB-INF/templates/basic_bs.xhtml">
+
+        <ui:define name="custom-css">
+            <h:outputStylesheet library="css" name="style.css"/>
+        </ui:define>
 
         <ui:define name="projectName">
             jh5-04-phaseListeners
@@ -31,10 +36,10 @@
                     </h:inputText>
                     <h:message for="itxtAddress"/>
 
-                    <h:outputText value="#{msgs['roster.profession']}" />
+                    <h:outputText value="#{msgs['roster.profession']}"/>
                     <h:selectOneMenu id="cmbxProfession" value="#{roster.profession}">
                         <f:selectItems value="#{applicationScope.professions}"/>
-                        <f:converter converterId="roster.professionConverter" />
+                        <f:converter converterId="roster.professionConverter"/>
                     </h:selectOneMenu>
                     <h:message for="cmbxProfession"/>
 

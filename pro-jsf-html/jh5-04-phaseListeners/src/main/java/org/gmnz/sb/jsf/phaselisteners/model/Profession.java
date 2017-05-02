@@ -17,6 +17,7 @@ public class Profession {
 
 
 	public Profession() {
+		System.out.println("new Profession object created: " + toString());
 	}
 
 

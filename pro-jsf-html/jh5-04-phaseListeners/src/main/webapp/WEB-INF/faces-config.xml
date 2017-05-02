@@ -89,7 +89,10 @@
             </system-event-listener-class>
             <system-event-class>javax.faces.event.PreDestroyApplicationEvent</system-event-class>
         </system-event-listener>
-
+        <system-event-listener>
+            <system-event-listener-class>org.gmnz.sb.jsf.phaselisteners.listener.ErrorDisplayListener</system-event-listener-class>
+            <system-event-class>javax.faces.event.PostValidateEvent</system-event-class>
+        </system-event-listener>
 
         <resource-bundle>
             <base-name>org.gz.res.messages</base-name>

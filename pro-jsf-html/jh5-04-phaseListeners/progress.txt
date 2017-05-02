@@ -34,3 +34,7 @@ public class MyListener implements SystemEventListener
 dichiararlo nel faces-config.xml
 
 guarda https://www.mkyong.com/jsf2/jsf-2-dropdown-box-example/
+* risolto, è riportato nell'AT
+
+---------------
+
