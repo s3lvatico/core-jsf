@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html>
+<!--suppress ALL -->
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:fn="http://java.sun.com/jsp/jstl/functions">
+<h:head>
+
+</h:head>
+<h:body>
+    <h3>Dati escapabile con JSTL</h3>
+    <h:outputText value="#{fn:escapeXml(jstlSample.escapableData)}"/>
+    <ui:debug hotkey="x"/>
+</h:body>
+</html>
