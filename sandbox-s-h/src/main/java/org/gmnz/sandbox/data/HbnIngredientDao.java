@@ -29,10 +29,13 @@ public class HbnIngredientDao implements IngredientDao {
 	public List<Ingredient> getAll() {
 		Session s = sessionFactory.openSession();
 
+		s.createQuery("");
+
 		return null;
 	}
 
 	public Ingredient findByName(String name) {
+
 		return null;
 	}
 
@@ -41,7 +44,13 @@ public class HbnIngredientDao implements IngredientDao {
 	}
 
 	public void delete(Ingredient i) {
+		Session s = sessionFactory.openSession();
+		Transaction tx = s.beginTransaction();
 
+		s.delete(i);
+
+		tx.commit();
+		s.close();
 	}
 
 }
