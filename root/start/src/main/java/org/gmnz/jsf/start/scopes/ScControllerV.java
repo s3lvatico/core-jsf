@@ -2,10 +2,11 @@ package org.gmnz.jsf.start.scopes;
 
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
+import java.io.Serializable;
 
 @ManagedBean
 @ViewScoped
-public class ScControllerV {
+public class ScControllerV implements Serializable {
 
 	private String message;
 
