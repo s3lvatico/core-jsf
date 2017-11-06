@@ -4,9 +4,6 @@ import javax.persistence.Column;
 import javax.persistence.Id;
 import javax.persistence.MappedSuperclass;
 
-/**
- * creato da simone in data 04/11/2017.
- */
 @MappedSuperclass
 public class BaseEntity {
 	@Id
@@ -17,7 +14,7 @@ public class BaseEntity {
 	protected String name;
 
 	@Column(length = 100)
-	protected String description;
+	protected String description = "";
 
 	public String getId() {
 		return id;

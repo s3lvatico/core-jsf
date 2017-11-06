@@ -5,6 +5,7 @@ import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
 
+import java.io.Serializable;
 import java.util.List;
 import java.util.UUID;
 
@@ -15,15 +16,17 @@ public class HbnIngredientDao implements IngredientDao {
 		this.sessionFactory = sessionFactory;
 	}
 
-	public void create(Ingredient i) {
+	public Serializable create(Ingredient i) {
 		i.setId(UUID.randomUUID().toString());
 		Session s = sessionFactory.openSession();
 		Transaction tx = s.beginTransaction();
 
-		s.save(i);
+		Serializable id = s.save(i);
 
 		tx.commit();
 		s.close();
+
+		return id;
 	}
 
 	public List<Ingredient> getAll() {

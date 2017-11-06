@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns="http://www.springframework.org/schema/beans"
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd"
+       xmlns:p="http://www.springframework.org/schema/p">
 
    <bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource"
          destroy-method="close">
@@ -17,6 +18,8 @@
       <property name="annotatedClasses">
          <list>
             <value>org.gmnz.sandbox.domain.Person</value>
+            <value>org.gmnz.sandbox.domain.Ingredient</value>
+            <value>org.gmnz.sandbox.domain.Dish</value>
          </list>
       </property>
       <property name="hibernateProperties">
@@ -31,8 +34,12 @@
    </bean>
 
 
-   <bean id="personDAO" class="org.gmnz.sandbox.data.HbnPersonDao">
-      <property name="sessionFactory" ref="hibernate5AnnotatedSessionFactory"/>
-   </bean>
+   <bean id="ingredientDao" class="org.gmnz.sandbox.data.HbnIngredientDao"
+         p:sessionFactory-ref="hibernate5AnnotatedSessionFactory"/>
+   <bean id="personDAO" class="org.gmnz.sandbox.data.HbnPersonDao"
+         p:sessionFactory-ref="hibernate5AnnotatedSessionFactory"/>
+
+   <bean id="ingredientService" class="org.gmnz.sandbox.service.IngredientService" p:dao-ref="ingredientDao"/>
+
 
 </beans>
