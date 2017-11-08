@@ -12,6 +12,11 @@ public class Ingredient extends BaseEntity {
 	@Column
 	private boolean freezed = false;
 
+	public Ingredient() {}
+	public Ingredient(String id) {
+		this.id = id;
+	}
+
 	public boolean isFreezed() {
 		return freezed;
 	}
@@ -26,6 +31,7 @@ public class Ingredient extends BaseEntity {
 				"id='" + id + '\'' +
 				", name='" + name + '\'' +
 				", description='" + description + '\'' +
+				", freezed=" + freezed +
 				'}';
 	}
 }

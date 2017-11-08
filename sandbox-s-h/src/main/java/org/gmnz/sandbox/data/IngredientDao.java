@@ -12,7 +12,9 @@ public interface IngredientDao {
 
 	List<Ingredient> getAll();
 
-	Ingredient findByName(String name);
+	List<Ingredient> findByName(String nameSearchPattern);
+
+	Ingredient findById(String id);
 
 	void update(Ingredient i);
 
