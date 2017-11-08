@@ -4,6 +4,7 @@ import org.gmnz.sandbox.domain.Ingredient;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
+import org.hibernate.query.Query;
 
 import java.io.Serializable;
 import java.util.List;
@@ -32,9 +33,9 @@ public class HbnIngredientDao implements IngredientDao {
 	public List<Ingredient> getAll() {
 		Session s = sessionFactory.openSession();
 
-		s.createQuery("");
-
-		return null;
+		Query<Ingredient> q = s.createQuery("from Ingredient", Ingredient.class);
+		List<Ingredient> results = q.list();
+		return results;
 	}
 
 	public Ingredient findByName(String name) {
