@@ -57,8 +57,12 @@ public class HbnIngredientDao implements IngredientDao {
 	public Ingredient findById(String id) {
 		Session hbnSession = sessionFactory.openSession();
 
-		Ingredient i = hbnSession.load(Ingredient.class, id);
+		// abbiamo imparato che il metodo load() restituisce un proxy inizializzato con l'id che sto cercando,
+		// ma NON l'intera entità con i valori inizializzati.
+		// Ingredient i = hbnSession.load(Ingredient.class, id);
 
+		// Occorre invece usare il metodo get()
+		Ingredient i = hbnSession.get(Ingredient.class, id);
 		hbnSession.close();
 
 		return i;

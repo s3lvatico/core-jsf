@@ -30,7 +30,7 @@ public class HbnPersonDao implements PersonDao {
 
 	public List<Person> getAll() {
 		Session s = hbnSessionFactory.openSession();
-		Query q = s.createQuery("select p from Person p");
+		Query<Person> q = s.createQuery("select p from Person p", Person.class);
 
 		List<Person> queryResult = q.list();
 
