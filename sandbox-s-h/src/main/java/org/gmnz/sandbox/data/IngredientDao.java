@@ -7,8 +7,7 @@ import java.util.List;
 
 public interface IngredientDao {
 
-//	void create(Ingredient i);
-	Serializable create(Ingredient i);
+	Serializable create(String name, String description, boolean isFreezed);
 
 	List<Ingredient> getAll();
 
@@ -16,7 +15,8 @@ public interface IngredientDao {
 
 	Ingredient findById(String id);
 
-	void update(Ingredient i);
+	void update(String id, String name, String description, boolean isFreezed);
 
-	void delete(Ingredient i);
+	void delete(String id);
+
 }

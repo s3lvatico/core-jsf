@@ -17,8 +17,9 @@ public class HbnIngredientDao implements IngredientDao {
 		this.sessionFactory = sessionFactory;
 	}
 
-	public Serializable create(Ingredient i) {
-		i.setId(UUID.randomUUID().toString());
+	public Serializable create(String name, String description, boolean isFreezed) {
+		Ingredient i = new Ingredient(UUID.randomUUID().toString());
+
 		Session s = sessionFactory.openSession();
 		Transaction tx = s.beginTransaction();
 
@@ -68,9 +69,15 @@ public class HbnIngredientDao implements IngredientDao {
 		return i;
 	}
 
-	public void update(Ingredient i) {
+	public void update(String id, String name, String description, boolean isFreezed) {
 		Session s = sessionFactory.openSession();
 		Transaction tx = s.beginTransaction();
+
+		Ingredient i = s.get(Ingredient.class, id);
+
+		i.setName(name);
+		i.setDescription(description);
+		i.setFreezed(isFreezed);
 
 		s.update(i);
 
@@ -78,9 +85,11 @@ public class HbnIngredientDao implements IngredientDao {
 		s.close();
 	}
 
-	public void delete(Ingredient i) {
+	public void delete(String id) {
 		Session s = sessionFactory.openSession();
 		Transaction tx = s.beginTransaction();
+
+		Ingredient i = s.get(Ingredient.class, id);
 
 		s.delete(i);
 

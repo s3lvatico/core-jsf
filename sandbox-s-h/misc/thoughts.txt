@@ -1,0 +1,5 @@
+Nella creazione di un piatto (Dish) io voglio che, sì, sia associato ad un
+insieme di ingredienti, ma voglio ANCHE che gli ingredienti siano ordinati
+secondo un ordine che io stabilisco.
+Ciò implica che la relazione tra ingrediente e piatto non è una semplice
+relazione 1-molti, ma ha come minimo un attributo.

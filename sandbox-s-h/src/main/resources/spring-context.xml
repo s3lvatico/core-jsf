@@ -20,6 +20,8 @@
             <value>org.gmnz.sandbox.domain.Person</value>
             <value>org.gmnz.sandbox.domain.Ingredient</value>
             <value>org.gmnz.sandbox.domain.Dish</value>
+            <value>org.gmnz.sandbox.domain.DishIngredient</value>
+            <value>org.gmnz.sandbox.domain.DishIngredientPK</value>
          </list>
       </property>
       <property name="hibernateProperties">
@@ -38,8 +40,11 @@
          p:sessionFactory-ref="hibernate5AnnotatedSessionFactory"/>
    <bean id="personDAO" class="org.gmnz.sandbox.data.HbnPersonDao"
          p:sessionFactory-ref="hibernate5AnnotatedSessionFactory"/>
+   <bean id="dishDAO" class="org.gmnz.sandbox.data.HbnDishDao"
+         p:sessionFactory-ref="hibernate5AnnotatedSessionFactory"/>
 
    <bean id="ingredientService" class="org.gmnz.sandbox.service.IngredientService" p:dao-ref="ingredientDao"/>
+   <bean id="dishService" class="org.gmnz.sandbox.service.DishService" p:dao-ref="dishDAO"/>
 
 
 </beans>

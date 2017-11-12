@@ -1,6 +1,8 @@
 package org.gmnz.sandbox.domain;
 
-import javax.persistence.*;
+import javax.persistence.Entity;
+import javax.persistence.OneToMany;
+import javax.persistence.Table;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -9,6 +11,7 @@ import java.util.List;
 public class Dish extends BaseEntity {
 
 
+/*
 	@OneToMany
 	@JoinTable
 			(
@@ -31,6 +34,18 @@ public class Dish extends BaseEntity {
 	public void setIngredients(List<Ingredient> ingredients) {
 		this.ingredients = ingredients;
 	}
+*/
+
+	@OneToMany(mappedBy = "dish")
+	private List<DishIngredient> dishIngredients = new ArrayList<>();
+
+	public List<DishIngredient> getDishIngredients() {
+		return dishIngredients;
+	}
+
+	public void setDishIngredients(List<DishIngredient> dishIngredients) {
+		this.dishIngredients = dishIngredients;
+	}
 
 	@Override
 	public boolean equals(Object o) {
@@ -40,13 +55,13 @@ public class Dish extends BaseEntity {
 
 		Dish dish = (Dish) o;
 
-		return ingredients.equals(dish.ingredients);
+		return dishIngredients.equals(dish.dishIngredients);
 	}
 
 	@Override
 	public int hashCode() {
 		int result = super.hashCode();
-		result = 31 * result + ingredients.hashCode();
+		result = 31 * result + dishIngredients.hashCode();
 		return result;
 	}
 
