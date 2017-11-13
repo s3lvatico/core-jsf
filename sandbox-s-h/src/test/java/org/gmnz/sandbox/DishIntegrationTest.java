@@ -38,7 +38,6 @@ public class DishIntegrationTest {
 
 		dishSvc.createNewDish("Pizza Perugina", "la classica de Perugia", ingredients);
 
-
 	}
 
 

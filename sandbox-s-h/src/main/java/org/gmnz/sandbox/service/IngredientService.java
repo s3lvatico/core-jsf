@@ -23,12 +23,7 @@ public class IngredientService {
 		// TODO name == null || name.isEmpty() lancia un'eccezione
 		description = description == null ? "" : description;
 
-		Ingredient i = new Ingredient();
-		i.setName(name);
-		i.setDescription(description);
-		i.setFreezed(isFreezed);
-
-		Serializable s = dao.create(i);
+		Serializable s = dao.create(name, description, isFreezed);
 		if (s instanceof String) {
 			return s.toString();
 		} else {
@@ -45,12 +40,11 @@ public class IngredientService {
 		return dao.findByName(nameSearchPattern);
 	}
 
-	public void update(Ingredient i) {
-		dao.update(i);
+	public void update(String ingredientId, String name, String description, boolean isFreezed) {
+		dao.update(ingredientId, name, description, isFreezed);
 	}
 
 	public void delete(String ingredientId) {
-		Ingredient delendo = new Ingredient(); delendo.setId(ingredientId);
-		dao.delete(delendo);
+		dao.delete(ingredientId);
 	}
 }

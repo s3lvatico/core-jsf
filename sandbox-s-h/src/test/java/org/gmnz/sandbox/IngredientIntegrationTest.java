@@ -75,14 +75,13 @@ public class IngredientIntegrationTest {
 		i1.setName(name1);
 		i1.setDescription(desc1);
 
-		svc.update(i1);
+		svc.update(i1.getId(), name1, desc1, i1.isFreezed());
 
 		Ingredient i2 = svc.findById(id);
 		Assert.assertEquals(name1, i2.getName());
 		Assert.assertEquals(desc1, i2.getDescription());
 
 		svc.delete(i1.getId());
-
 	}
 
 }

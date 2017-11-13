@@ -13,6 +13,8 @@ public interface IngredientDao {
 
 	List<Ingredient> findByName(String nameSearchPattern);
 
+	Ingredient getByName(String name);
+
 	Ingredient findById(String id);
 
 	void update(String id, String name, String description, boolean isFreezed);

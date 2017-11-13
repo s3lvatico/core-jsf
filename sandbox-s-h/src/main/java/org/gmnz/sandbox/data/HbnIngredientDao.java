@@ -44,14 +44,27 @@ public class HbnIngredientDao implements IngredientDao {
 
 	public List<Ingredient> findByName(String nameSearchPattern) {
 		Session hbnSession = sessionFactory.openSession();
+		Query<Ingredient> query = hbnSession.createNamedQuery("searchByName", Ingredient.class);
+		query.setParameter("searchPattern", "%" + nameSearchPattern + "%");
 
-		String hqlQuery = "from Ingredient i where i.name like \'%" + nameSearchPattern + "%\'";
-		Query<Ingredient> query = hbnSession.createQuery(hqlQuery, Ingredient.class);
 		List<Ingredient> queryResult = query.list();
 
 		hbnSession.close();
 
 		return queryResult;
+	}
+
+	@Override
+	public Ingredient getByName(String name) {
+		Session hbnSession = sessionFactory.openSession();
+		Query<Ingredient> query = hbnSession.createNamedQuery("getByName", Ingredient.class);
+		query.setParameter("name", name);
+
+		Ingredient i = query.getSingleResult();
+
+		hbnSession.close();
+
+		return i;
 	}
 
 	@Override

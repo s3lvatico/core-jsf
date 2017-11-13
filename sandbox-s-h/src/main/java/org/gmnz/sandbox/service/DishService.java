@@ -5,9 +5,6 @@ import org.gmnz.sandbox.domain.Ingredient;
 
 import java.util.List;
 
-/**
- * creato da simone in data 12/11/2017.
- */
 public class DishService {
 
 	private DishDao dao;
