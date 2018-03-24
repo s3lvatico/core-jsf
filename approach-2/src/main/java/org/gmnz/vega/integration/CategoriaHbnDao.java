@@ -20,7 +20,7 @@ public class CategoriaHbnDao extends BaseHibernateDao implements CategoriaDao {
 
 	@Override
 	public List<Categoria> findAll() throws DaoException {
-		List<String> queryResult = wrapInTransaction(new TxManagedExecutor<List<String>>() {
+		List<String> categoriaEntityNamesList = wrapInTransaction(new TxManagedExecutor<List<String>>() {
 			@Override
 			protected List<String> execute() {
 				Query<String> q = session.createQuery("select c.nome from Categoria c", String.class);
@@ -29,7 +29,7 @@ public class CategoriaHbnDao extends BaseHibernateDao implements CategoriaDao {
 		});
 
 		List<Categoria> result = new ArrayList<>();
-		for (String entity : queryResult) {
+		for (String entity : categoriaEntityNamesList) {
 			Categoria cat = new Categoria(entity);
 			result.add(cat);
 		}
@@ -134,9 +134,9 @@ public class CategoriaHbnDao extends BaseHibernateDao implements CategoriaDao {
 
 	@Override
 	public void create(String nome) throws DaoException {
-		if (VegaUtil.stringNullOrEmpty(nome)) {
-			throw new DaoException("null or empty name specified for the new Categoria");
-		}
+//		if (VegaUtil.stringNullOrEmpty(nome)) {
+//			throw new DaoException("null or empty name specified for the new Categoria");
+//		}
 		wrapInTransaction(new TxManagedExecutor<Void>() {
 			@Override
 			protected Void execute() throws DaoException {
