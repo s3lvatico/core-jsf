@@ -4,8 +4,8 @@
     "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
 <hibernate-mapping>
 
-   <class name="org.gmnz.vega.integration.VgReportDataEntity" table="vg_report_data" schema="sandbox">
-      <composite-id mapped="true" class="org.gmnz.vega.integration.VgReportDataEntityPK">
+   <class name="org.gmnz.vega.persistence.VgReportDataEntity" table="vg_report_data" schema="sandbox">
+      <composite-id mapped="true" class="org.gmnz.vega.persistence.VgReportDataEntityPK">
          <key-property name="idReport">
             <column name="id_report" sql-type="char(36)" length="36"/>
          </key-property>
@@ -16,10 +16,10 @@
       <property name="tox">
          <column name="tox" sql-type="decimal(3,2)" precision="3" scale="2"/>
       </property>
-      <many-to-one name="vgReportByIdReport" class="org.gmnz.vega.integration.VgReportEntity">
+      <many-to-one name="vgReportByIdReport" class="org.gmnz.vega.persistence.VgReportEntity">
          <column name="id_report"/>
       </many-to-one>
-      <many-to-one name="vgAllergeneByIdAllergene" class="org.gmnz.vega.integration.VgAllergeneEntity">
+      <many-to-one name="vgAllergeneByIdAllergene" class="org.gmnz.vega.persistence.VgAllergeneEntity">
          <column name="id_allergene"/>
       </many-to-one>
    </class>

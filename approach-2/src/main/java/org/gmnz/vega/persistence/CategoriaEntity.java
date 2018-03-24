@@ -1,4 +1,4 @@
-package org.gmnz.vega.integration;
+package org.gmnz.vega.persistence;
 
 
 import org.gmnz.vega.base.NamedEntity;

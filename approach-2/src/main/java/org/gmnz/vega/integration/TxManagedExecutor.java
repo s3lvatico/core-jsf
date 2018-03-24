@@ -1,4 +1,4 @@
-package org.gmnz.vega.repository;
+package org.gmnz.vega.integration;
 
 
 import org.hibernate.Session;

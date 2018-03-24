@@ -3,9 +3,9 @@ package org.gmnz.vega.base;
 
 import org.gmnz.vega.domain.Allergene;
 import org.gmnz.vega.domain.Categoria;
-import org.gmnz.vega.repository.CategoriaDao;
-import org.gmnz.vega.repository.CategoriaHbnDao;
-import org.gmnz.vega.repository.DaoException;
+import org.gmnz.vega.integration.CategoriaDao;
+import org.gmnz.vega.integration.CategoriaHbnDao;
+import org.gmnz.vega.integration.DaoException;
 import org.junit.After;
 import org.junit.Assert;
 import org.junit.Before;

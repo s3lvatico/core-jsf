@@ -3,7 +3,7 @@ package org.gmnz.vega.base;
 
 import org.gmnz.vega.domain.Allergene;
 import org.gmnz.vega.domain.Categoria;
-import org.gmnz.vega.repository.*;
+import org.gmnz.vega.integration.*;
 import org.junit.*;
 
 import java.util.List;

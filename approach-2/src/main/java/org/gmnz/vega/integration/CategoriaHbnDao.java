@@ -1,12 +1,12 @@
-package org.gmnz.vega.repository;
+package org.gmnz.vega.integration;
 
 
 import org.gmnz.vega.base.VegaUtil;
 import org.gmnz.vega.domain.Allergene;
 import org.gmnz.vega.domain.Categoria;
-import org.gmnz.vega.integration.AllergeneEntity;
-import org.gmnz.vega.integration.CategoriaEntity;
-import org.gmnz.vega.integration.EntityFactory;
+import org.gmnz.vega.persistence.AllergeneEntity;
+import org.gmnz.vega.persistence.CategoriaEntity;
+import org.gmnz.vega.persistence.EntityFactory;
 import org.hibernate.Session;
 import org.hibernate.query.Query;
 

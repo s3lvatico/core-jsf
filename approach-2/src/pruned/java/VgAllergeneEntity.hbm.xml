@@ -4,7 +4,7 @@
     "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
 <hibernate-mapping>
 
-   <class name="org.gmnz.vega.integration.VgAllergeneEntity" table="vg_allergene" schema="sandbox">
+   <class name="org.gmnz.vega.persistence.VgAllergeneEntity" table="vg_allergene" schema="sandbox">
       <id name="id">
          <column name="id" sql-type="char(36)" length="36"/>
       </id>

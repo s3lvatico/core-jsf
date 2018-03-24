@@ -1,7 +1,7 @@
 package org.gmnz.vega.base;
 
 
-import org.gmnz.vega.integration.AllergeneEntity;
+import org.gmnz.vega.persistence.AllergeneEntity;
 import org.hibernate.SessionFactory;
 import org.hibernate.boot.Metadata;
 import org.hibernate.boot.MetadataSources;

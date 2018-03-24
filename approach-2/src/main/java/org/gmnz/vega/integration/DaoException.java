@@ -1,4 +1,4 @@
-package org.gmnz.vega.repository;
+package org.gmnz.vega.integration;
 
 
 public class DaoException extends Exception {

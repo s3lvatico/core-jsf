@@ -2,9 +2,9 @@ package org.gmnz.vega.base;
 
 
 import org.gmnz.vega.domain.Allergene;
-import org.gmnz.vega.repository.AllergeneDao;
-import org.gmnz.vega.repository.AllergeneHbnDao;
-import org.gmnz.vega.repository.DaoException;
+import org.gmnz.vega.integration.AllergeneDao;
+import org.gmnz.vega.integration.AllergeneHbnDao;
+import org.gmnz.vega.integration.DaoException;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;

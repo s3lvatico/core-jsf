@@ -4,7 +4,7 @@
     "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
 <hibernate-mapping>
 
-   <class name="org.gmnz.vega.integration.VgReportEntity" table="vg_report" schema="sandbox">
+   <class name="org.gmnz.vega.persistence.VgReportEntity" table="vg_report" schema="sandbox">
       <id name="id">
          <column name="id" sql-type="char(36)" length="36"/>
       </id>
@@ -18,7 +18,7 @@
          <key>
             <column name="id_report"/>
          </key>
-         <one-to-many not-found="ignore" class="org.gmnz.vega.integration.VgReportDataEntity"/>
+         <one-to-many not-found="ignore" class="org.gmnz.vega.persistence.VgReportDataEntity"/>
       </set>
    </class>
 </hibernate-mapping>
