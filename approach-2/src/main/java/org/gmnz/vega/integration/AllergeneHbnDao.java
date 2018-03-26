@@ -66,7 +66,7 @@ public class AllergeneHbnDao extends BaseHibernateDao implements AllergeneDao {
 		AllergeneEntity allergeneEntity = EntityFactory.getInstance().createAllergeneEntity(a.getNome());
 		CategoriaEntity categoriaEntity;
 		if (categoriaDao.existsByName(session, nomeCategoria)) {
-			categoriaEntity = categoriaDao.getSingleEntityByName(session, nomeCategoria);
+			categoriaEntity = categoriaDao.getEntityGraphByCategoriaName(session, nomeCategoria);
 		} else {
 			categoriaEntity = CategoriaEntity.ENTITY_CATEGORIA_DEFAULT;
 		}

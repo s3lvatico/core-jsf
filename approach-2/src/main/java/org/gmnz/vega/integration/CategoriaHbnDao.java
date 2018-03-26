@@ -24,7 +24,8 @@ public class CategoriaHbnDao extends BaseHibernateDao implements CategoriaDao {
 			@Override
 			protected List<String> execute() {
 				Query<String> q = session.createQuery("select c.nome from Categoria c", String.class);
-				return q.list();
+				List<String> queryResults = q.list();
+				return queryResults;
 			}
 		});
 
@@ -51,7 +52,7 @@ public class CategoriaHbnDao extends BaseHibernateDao implements CategoriaDao {
 
 
 
-	CategoriaEntity getSingleEntityByName(Session session, String nome) {
+	CategoriaEntity getEntityGraphByCategoriaName(Session session, String nome) {
 		Query<CategoriaEntity> q = session.createQuery("select cat from Categoria cat left join fetch  cat.allergeni where cat.nome = :nome", CategoriaEntity.class);
 		q.setParameter("nome", nome);
 		try {
@@ -65,14 +66,14 @@ public class CategoriaHbnDao extends BaseHibernateDao implements CategoriaDao {
 
 	@Override
 	public Categoria findByName(String name) throws DaoException {
-		if (VegaUtil.stringNullOrEmpty(name)) {
-			return null;
-		}
+//		if (VegaUtil.stringNullOrEmpty(name)) {
+//			return null;
+//		}
 
 		CategoriaEntity entity = wrapInTransaction(new TxManagedExecutor<CategoriaEntity>() {
 			@Override
 			protected CategoriaEntity execute() {
-				return getSingleEntityByName(session, name);
+				return getEntityGraphByCategoriaName(session, name);
 			}
 		});
 		Categoria categoria = null;
@@ -113,7 +114,7 @@ public class CategoriaHbnDao extends BaseHibernateDao implements CategoriaDao {
 
 
 //	private void addSingleEntity(Session s, Categoria c) {
-//		if (getSingleEntityByName(s, c.getNome()) == null) {
+//		if (getEntityGraphByCategoriaName(s, c.getNome()) == null) {
 //
 //			CategoriaEntity entity = new CategoriaEntity();
 //			entity.setId(UUID.randomUUID().toString());
@@ -140,12 +141,12 @@ public class CategoriaHbnDao extends BaseHibernateDao implements CategoriaDao {
 		wrapInTransaction(new TxManagedExecutor<Void>() {
 			@Override
 			protected Void execute() throws DaoException {
-				if (getSingleEntityByName(session, nome) == null) {
-					CategoriaEntity categoriaEntity = EntityFactory.getInstance().createCategoriaEntity(nome);
-					session.save(categoriaEntity);
-				} else {
-					throw new DaoException("specified category <" + nome + "> already exists");
-				}
+//				if (getEntityGraphByCategoriaName(session, nome) == null) {
+				CategoriaEntity categoriaEntity = EntityFactory.getInstance().createCategoriaEntity(nome);
+				session.save(categoriaEntity);
+//				} else {
+//					throw new DaoException("specified category <" + nome + "> already exists");
+//				}
 				return null;
 			}
 		});
@@ -161,11 +162,11 @@ public class CategoriaHbnDao extends BaseHibernateDao implements CategoriaDao {
 		wrapInTransaction(new TxManagedExecutor<Void>() {
 			@Override
 			protected Void execute() throws DaoException {
-				if (getSingleEntityByName(session, newName) != null) {
+				if (getEntityGraphByCategoriaName(session, newName) != null) {
 					String errorMessage = String.format("Cannot rename Categoria <%s> to <%s>. There is already such a category in the system", nome, newName);
 					throw new DaoException(errorMessage);
 				}
-				CategoriaEntity entity = getSingleEntityByName(session, nome);
+				CategoriaEntity entity = getEntityGraphByCategoriaName(session, nome);
 				if (entity != null) {
 					entity.setNome(newName);
 					session.update(entity);
@@ -191,7 +192,7 @@ public class CategoriaHbnDao extends BaseHibernateDao implements CategoriaDao {
 		wrapInTransaction(new TxManagedExecutor<Void>() {
 			@Override
 			protected Void execute() throws DaoException {
-				CategoriaEntity categoriaEntity = getSingleEntityByName(session, categoria.getNome());
+				CategoriaEntity categoriaEntity = getEntityGraphByCategoriaName(session, categoria.getNome());
 				if (categoriaEntity != null) { // la categoria che cerco esiste
 					// tutti gli allergeni associati passano preventivamente alla categoria predefinita
 					for (AllergeneEntity allergeneEntity : categoriaEntity.getAllergeni()) {
@@ -243,7 +244,7 @@ public class CategoriaHbnDao extends BaseHibernateDao implements CategoriaDao {
 				if (q.getResultList().size() != 0) {
 					throw new DaoException("Specified Categoria <" + nome + "> is referenced by at least one report.");
 				}
-				CategoriaEntity categoriaEntity = getSingleEntityByName(session, nome);
+				CategoriaEntity categoriaEntity = getEntityGraphByCategoriaName(session, nome);
 				if (categoriaEntity != null) {
 					for (AllergeneEntity allergeneEntity : categoriaEntity.getAllergeni()) {
 						allergeneEntity.setCategoria(CategoriaEntity.ENTITY_CATEGORIA_DEFAULT);
