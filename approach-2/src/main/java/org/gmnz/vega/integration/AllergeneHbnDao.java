@@ -54,9 +54,9 @@ public class AllergeneHbnDao extends BaseHibernateDao implements AllergeneDao {
 
 
 	void addSingleEntity(Session session, Allergene a) throws DaoException {
-		if (getSingleEntityByName(session, a.getNome()) != null) {
-			throw new DaoException("Specified Allergene is already present in the system.");
-		}
+//		if (getSingleEntityByName(session, a.getNome()) != null) {
+//			throw new DaoException("Specified Allergene is already present in the system.");
+//		}
 
 		if (a.getCategoria() == null) {
 			a.setCategoria(Categoria.DEFAULT_CATEGORIA);
@@ -78,9 +78,9 @@ public class AllergeneHbnDao extends BaseHibernateDao implements AllergeneDao {
 
 	@Override
 	public void create(Allergene allergene) throws DaoException {
-		if (allergene == null || VegaUtil.stringNullOrEmpty(allergene.getNome())) {
-			throw new DaoException("Specified Allergene was null or had an empty name");
-		}
+//		if (allergene == null || VegaUtil.stringNullOrEmpty(allergene.getNome())) {
+//			throw new DaoException("Specified Allergene was null or had an empty name");
+//		}
 		wrapInTransaction(new TxManagedExecutor<Void>() {
 			@Override
 			protected Void execute() throws DaoException {
@@ -110,29 +110,6 @@ public class AllergeneHbnDao extends BaseHibernateDao implements AllergeneDao {
 	}
 
 
-/*
-	@Override
-	public List<Allergene> findByPattern(String pattern) throws DaoException {
-		List<AllergeneEntity> queryResult = wrapInTransaction(new TxManagedExecutor<List<AllergeneEntity>>() {
-			@Override
-			protected List<AllergeneEntity> execute() {
-				String query = "select allergene from Allergene allergene where allergene.nome like :pattern";
-				Query<AllergeneEntity> q = session.createQuery(query, AllergeneEntity.class);
-				q.setParameter("pattern", pattern);
-				return q.getResultList();
-			}
-		});
-
-		List<Allergene> result = new ArrayList<>();
-		for (AllergeneEntity ae : queryResult) {
-			Allergene a = new Allergene(ae.getNome());
-			result.add(a);
-		}
-		return result;
-	}
-*/
-
-
 
 	@Override
 	public void create(Collection<Allergene> allergeni) throws DaoException {
@@ -153,26 +130,26 @@ public class AllergeneHbnDao extends BaseHibernateDao implements AllergeneDao {
 
 	@Override
 	public void update(String nome, String newName) throws DaoException {
-		if (VegaUtil.stringNullOrEmpty(nome) || VegaUtil.stringNullOrEmpty(newName)) {
-			String errorMessage = String.format("Can't perform update operation because either source entity name [%s] or target entity name [%s] are null or empty", nome, newName);
-			throw new DaoException(errorMessage);
-		}
+//		if (VegaUtil.stringNullOrEmpty(nome) || VegaUtil.stringNullOrEmpty(newName)) {
+//			String errorMessage = String.format("Can't perform update operation because either source entity name [%s] or target entity name [%s] are null or empty", nome, newName);
+//			throw new DaoException(errorMessage);
+//		}
 		wrapInTransaction(new TxManagedExecutor<Void>() {
 			@Override
 			protected Void execute() throws DaoException {
 				AllergeneEntity srcEntity = getSingleEntityByName(session, nome);
-				boolean srcEntityExists = srcEntity != null;
-				if (!srcEntityExists) {
-					throw new DaoException("Can't rename non existent entity <" + nome + ">.");
-				}
+//				boolean srcEntityExists = srcEntity != null;
+//				if (!srcEntityExists) {
+//					throw new DaoException("Can't rename non existent entity <" + nome + ">.");
+//				}
 				AllergeneEntity tgtEntity = getSingleEntityByName(session, newName);
-				if (tgtEntity == null) {
-					srcEntity.setNome(newName);
-					session.update(srcEntity);
-				} else {
-					String errorMessage = String.format("Can't rename <%s> to <%s>. Target entity already exists.", nome, newName);
-					throw new DaoException(errorMessage);
-				}
+//				if (tgtEntity == null) {
+				srcEntity.setNome(newName);
+				session.update(srcEntity);
+//				} else {
+//					String errorMessage = String.format("Can't rename <%s> to <%s>. Target entity already exists.", nome, newName);
+//					throw new DaoException(errorMessage);
+//				}
 				return null;
 			}
 		});

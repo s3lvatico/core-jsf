@@ -1,7 +1,6 @@
 package org.gmnz.vega.integration;
 
 
-import org.gmnz.vega.base.VegaUtil;
 import org.gmnz.vega.domain.Allergene;
 import org.gmnz.vega.domain.Categoria;
 import org.gmnz.vega.persistence.AllergeneEntity;
@@ -66,10 +65,6 @@ public class CategoriaHbnDao extends BaseHibernateDao implements CategoriaDao {
 
 	@Override
 	public Categoria findByName(String name) throws DaoException {
-//		if (VegaUtil.stringNullOrEmpty(name)) {
-//			return null;
-//		}
-
 		CategoriaEntity entity = wrapInTransaction(new TxManagedExecutor<CategoriaEntity>() {
 			@Override
 			protected CategoriaEntity execute() {
@@ -90,63 +85,13 @@ public class CategoriaHbnDao extends BaseHibernateDao implements CategoriaDao {
 
 
 
-/*
-	@Override
-	public List<Categoria> findByPattern(String pattern) {
-		List<CategoriaEntity> queryResult = wrapInTransaction(new TxManagedExecutor<List<CategoriaEntity>>() {
-			@Override
-			protected List<CategoriaEntity> execute() {
-				String query = "select categoria from Categoria categoria where categoria.nome like :pattern";
-				Query<CategoriaEntity> q = session.createQuery(query, CategoriaEntity.class);
-				q.setParameter("pattern", pattern);
-				return q.getResultList();
-			}
-		});
-
-		List<Categoria> result = new ArrayList<>();
-		for (CategoriaEntity ae : queryResult) {
-			Categoria a = new Categoria(ae.getNome());
-			result.add(a);
-		}
-		return result;
-	}
-*/
-
-
-//	private void addSingleEntity(Session s, Categoria c) {
-//		if (getEntityGraphByCategoriaName(s, c.getNome()) == null) {
-//
-//			CategoriaEntity entity = new CategoriaEntity();
-//			entity.setId(UUID.randomUUID().toString());
-//			entity.setNome(c.getNome());
-//
-//			Query<AllergeneEntity> query = s.createQuery("from Allergene aaa where aaa.nome = :nome", AllergeneEntity.class);
-//			for (Allergene a : c.getAllergeni()) {
-//				query.setParameter("nome", a.getNome());
-//				AllergeneEntity allergeneEntity = query.getSingleResult();
-//				entity.getAllergeni().add(allergeneEntity);
-//			}
-//
-//			s.save(entity);
-//		}
-//	}
-
-
-
 	@Override
 	public void create(String nome) throws DaoException {
-//		if (VegaUtil.stringNullOrEmpty(nome)) {
-//			throw new DaoException("null or empty name specified for the new Categoria");
-//		}
 		wrapInTransaction(new TxManagedExecutor<Void>() {
 			@Override
-			protected Void execute() throws DaoException {
-//				if (getEntityGraphByCategoriaName(session, nome) == null) {
+			protected Void execute() {
 				CategoriaEntity categoriaEntity = EntityFactory.getInstance().createCategoriaEntity(nome);
 				session.save(categoriaEntity);
-//				} else {
-//					throw new DaoException("specified category <" + nome + "> already exists");
-//				}
 				return null;
 			}
 		});
@@ -156,25 +101,13 @@ public class CategoriaHbnDao extends BaseHibernateDao implements CategoriaDao {
 
 	@Override
 	public void updateRename(String nome, String newName) throws DaoException {
-		if (VegaUtil.stringNullOrEmpty(nome) || VegaUtil.stringNullOrEmpty(newName)) {
-			return;
-		}
 		wrapInTransaction(new TxManagedExecutor<Void>() {
 			@Override
 			protected Void execute() throws DaoException {
-				if (getEntityGraphByCategoriaName(session, newName) != null) {
-					String errorMessage = String.format("Cannot rename Categoria <%s> to <%s>. There is already such a category in the system", nome, newName);
-					throw new DaoException(errorMessage);
-				}
 				CategoriaEntity entity = getEntityGraphByCategoriaName(session, nome);
-				if (entity != null) {
-					entity.setNome(newName);
-					session.update(entity);
-					return null;
-				} else {
-					String errorMessage = String.format("Cannot find target Categoria to rename <%s>", nome);
-					throw new DaoException(errorMessage);
-				}
+				entity.setNome(newName);
+				session.update(entity);
+				return null;
 			}
 		});
 	}
@@ -183,43 +116,31 @@ public class CategoriaHbnDao extends BaseHibernateDao implements CategoriaDao {
 
 	@Override
 	public void updateAllergeni(Categoria categoria) throws DaoException {
-		if (categoria == null) {
-			throw new DaoException("null business object specified");
-		}
-		if (VegaUtil.stringNullOrEmpty(categoria.getNome())) {
-			throw new DaoException("null or empty name specified for the new Categoria");
-		}
 		wrapInTransaction(new TxManagedExecutor<Void>() {
 			@Override
 			protected Void execute() throws DaoException {
 				CategoriaEntity categoriaEntity = getEntityGraphByCategoriaName(session, categoria.getNome());
-				if (categoriaEntity != null) { // la categoria che cerco esiste
-					// tutti gli allergeni associati passano preventivamente alla categoria predefinita
-					for (AllergeneEntity allergeneEntity : categoriaEntity.getAllergeni()) {
-						allergeneEntity.setCategoria(CategoriaEntity.ENTITY_CATEGORIA_DEFAULT);
+				// tutti gli allergeni associati passano preventivamente alla categoria predefinita
+				for (AllergeneEntity allergeneEntity : categoriaEntity.getAllergeni()) {
+					allergeneEntity.setCategoria(CategoriaEntity.ENTITY_CATEGORIA_DEFAULT);
+					session.update(allergeneEntity);
+				}
+				categoriaEntity.getAllergeni().clear();
+				try {
+					AllergeneEntity allergeneEntity;
+					Query<AllergeneEntity> allergeneQuery = session.createQuery("select allergene from Allergene allergene where allergene.nome = :nome", AllergeneEntity.class);
+					// gli allereni specificati nel domain object vengono associati a questa categoria
+					for (Allergene a : categoria.getAllergeni()) {
+						// getSingleResult() può lanciare eccezione
+						allergeneEntity = allergeneQuery.setParameter("nome", a.getNome()).getSingleResult();
+						categoriaEntity.getAllergeni().add(allergeneEntity);
+						allergeneEntity.setCategoria(categoriaEntity);
 						session.update(allergeneEntity);
 					}
-					categoriaEntity.getAllergeni().clear();
-					try {
-						AllergeneEntity allergeneEntity;
-						Query<AllergeneEntity> allergeneQuery = session.createQuery("select allergene from Allergene allergene where allergene.nome = :nome", AllergeneEntity.class);
-						// gli allereni specificati nel domain object vengono associati a questa categoria
-						for (Allergene a : categoria.getAllergeni()) {
-							// getSingleResult() può lanciare eccezione
-							allergeneEntity = allergeneQuery.setParameter("nome", a.getNome()).getSingleResult();
-							categoriaEntity.getAllergeni().add(allergeneEntity);
-							allergeneEntity.setCategoria(categoriaEntity);
-							session.update(allergeneEntity);
-						}
-					} catch (NoResultException e) {
-						throw new DaoException("at least one of the specified Allergene(s) was not found in the system", e);
-					} catch (Exception e) {
-						throw new DaoException("Exception thrown when setting the associated Allergene(s) to this Categoria", e);
-					}
-					session.update(categoriaEntity);
-				} else {
-					throw new DaoException(String.format("Specified Categoria <%s> does not exist", categoria.getNome()));
+				} catch (NoResultException e) {
+					throw new DaoException("at least one of the specified Allergene(s) was not found in the system", e);
 				}
+				session.update(categoriaEntity);
 				return null;
 			}
 		});
@@ -229,31 +150,28 @@ public class CategoriaHbnDao extends BaseHibernateDao implements CategoriaDao {
 
 	@Override
 	public void delete(String nome) throws DaoException {
-		if (VegaUtil.stringNullOrEmpty(nome)) {
-			return;
-		}
-		if (nome.equalsIgnoreCase(CategoriaEntity.ENTITY_CATEGORIA_DEFAULT.getNome())) {
-			throw new DaoException("Default category cannot be removed");
-		}
 		wrapInTransaction(new TxManagedExecutor<Void>() {
 			@Override
 			protected Void execute() throws DaoException {
+				/*
+					TODO questa sezione va spostata in un livello di logica superiore
+				 */
 				Query q = session.createQuery("select rd from ReportData rd where rd.vgAllergeneByIdAllergene.categoria.nome = :nome");
 				q.setParameter("nome", nome);
 
 				if (q.getResultList().size() != 0) {
 					throw new DaoException("Specified Categoria <" + nome + "> is referenced by at least one report.");
 				}
+				/* -------------------- */
+
 				CategoriaEntity categoriaEntity = getEntityGraphByCategoriaName(session, nome);
-				if (categoriaEntity != null) {
-					for (AllergeneEntity allergeneEntity : categoriaEntity.getAllergeni()) {
-						allergeneEntity.setCategoria(CategoriaEntity.ENTITY_CATEGORIA_DEFAULT);
-						session.update(allergeneEntity);
-					}
-					session.remove(categoriaEntity);
-				} else {
-					throw new DaoException("Specified Categoria <" + nome + "> does not exist.");
+
+				for (AllergeneEntity allergeneEntity : categoriaEntity.getAllergeni()) {
+					allergeneEntity.setCategoria(CategoriaEntity.ENTITY_CATEGORIA_DEFAULT);
+					session.update(allergeneEntity);
 				}
+				session.remove(categoriaEntity);
+
 				return null;
 			}
 		});
