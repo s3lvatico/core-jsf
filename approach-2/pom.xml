@@ -13,7 +13,7 @@
       <java.compiler.version>1.8</java.compiler.version>
       <hibernate.version>5.2.12.Final</hibernate.version>
       <mysql.driver.version>8.0.16</mysql.driver.version>
-      <junit.version>4.12</junit.version>
+      <junit.version>4.13.1</junit.version>
    </properties>
 
 
